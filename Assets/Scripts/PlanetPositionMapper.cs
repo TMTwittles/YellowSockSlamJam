@@ -1,7 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 public class PlanetPositionMapper : MonoBehaviour
 {
@@ -10,6 +9,7 @@ public class PlanetPositionMapper : MonoBehaviour
     [SerializeField] private float wireSphereRadius;
     [SerializeField] private PlanetPositionGenerationData data;
     private List<List<Vector3>> planetPositions;
+    public List<List<Vector3>> PlanetPositions => planetPositions;
 
     private void OnDrawGizmos()
     {
@@ -38,11 +38,6 @@ public class PlanetPositionMapper : MonoBehaviour
                 Gizmos.DrawLine(startingPlanetInCycle, previousPlanetPosition);
             }
         }
-    }
-    
-    void Start()
-    {
-        GeneratePlanetPositions();
     }
     
     public void GeneratePlanetPositions()
