@@ -48,7 +48,7 @@ public class ShuttleConfirmationPanel : MonoBehaviour
 
     void Update()
     {
-        amountToShip = (int) (amountSlider.value * 25.0f);
+        amountToShip = (int) (amountSlider.value * 24.0f) + 1;
         amountTMP.text = amountToShip.ToString();
     }
 
