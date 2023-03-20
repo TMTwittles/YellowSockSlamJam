@@ -2,9 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
-public class PlanetPositionMapper : MonoBehaviour
+public class PlanetPositionManager : MonoBehaviour
 {
-    // Start point, in case of this game we could consider this the position of the sun.
     [SerializeField] private Vector3 origin;
     [SerializeField] private float wireSphereRadius;
     [SerializeField] private PlanetPositionGenerationData data;

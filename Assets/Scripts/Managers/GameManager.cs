@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private PlanetPositionMapper planetPositionMapper;
-    public PlanetPositionMapper PositionMapper => planetPositionMapper;
+    [FormerlySerializedAs("planetPositionMapper")] [SerializeField] private PlanetPositionManager planetPositionManager;
+    public PlanetPositionManager PositionManager => planetPositionManager;
     [SerializeField] private PlanetManager planetManager;
     public PlanetManager PlanetManager => planetManager;
+    [SerializeField] private ResourceManager resourceManager;
+    public ResourceManager ResourceManager => resourceManager;
+    [SerializeField] private TimeManager timeManager;
+    public TimeManager TimeManager => timeManager;
     
     public static GameManager Instance { get; private set; }
     private void Awake() 
@@ -24,7 +29,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        planetPositionMapper.GeneratePlanetPositions();
+        planetPositionManager.GeneratePlanetPositions();
+        resourceManager.ConfigureResources();
         planetManager.InstantiatePlanets();
     }
     
