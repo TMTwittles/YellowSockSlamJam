@@ -9,6 +9,7 @@ public class ShuttleRouteData : ScriptableObject
     private PlanetData startPlanetData;
     public PlanetData StartPlanetData => startPlanetData;
     private PlanetData endPlanetData;
+    
     public PlanetData EndPlanetData => endPlanetData;
     private string resourceToShipName;
     public string ResourceToShipName => resourceToShipName;
@@ -17,6 +18,11 @@ public class ShuttleRouteData : ScriptableObject
     private float shuttleTravelDuration;
     public float ShuttleTravelDuration => shuttleTravelDuration;
     private float shuttleTravelProgress = 0.0f;
+
+    private Vector3 shuttleRouteStartDestination;
+    public Vector3 ShuttleRouteStartDestination => shuttleRouteStartDestination;
+    private Vector3 shuttleRouteEndDestination;
+    public Vector3 ShuttleRouteEndDestination => shuttleRouteEndDestination;
 
     public Action ShuttleRouteComplete;
     public Action ShuttleRouteCanceled;
@@ -28,7 +34,10 @@ public class ShuttleRouteData : ScriptableObject
         endPlanetData = _endPlanetData;
         resourceToShipName = _resourceToShipName;
         amount = _amount;
-        shuttleTravelDuration = Vector3.Distance(startPlanetData.PlanetPosition, endPlanetData.PlanetPosition) * 0.1f * amount;
+        // the magic number of 1.75f is there to make shuttles start a bit further away from the planet to prevent clipping. - Arvie
+        shuttleRouteStartDestination = startPlanetData.PlanetPosition + (endPlanetData.PlanetPosition - startPlanetData.PlanetPosition).normalized * startPlanetData.PlanetRadius * 1.75f;
+        shuttleRouteEndDestination = endPlanetData.PlanetPosition + (startPlanetData.PlanetPosition - endPlanetData.PlanetPosition).normalized * endPlanetData.PlanetRadius * 1.75f;
+        shuttleTravelDuration = Vector3.Distance(shuttleRouteStartDestination, shuttleRouteEndDestination) * 0.1f * amount;
     }
 
     public void Tick()

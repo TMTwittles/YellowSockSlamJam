@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shuttleRouteInfoUIDisplay: {fileID: 1386391373276940733, guid: dad20f60e30210a4c9d34fa8cc9a9bb5, type: 3}
-  shuttleGameObject: {fileID: 0}
+  shuttleGameObject: {fileID: 3585869410008757827, guid: b39451041be511d44a27ce585ed2d62d, type: 3}

@@ -32,7 +32,8 @@ public class PlanetManager : MonoBehaviour
                 PlanetData newPlanetData = ScriptableObject.CreateInstance<PlanetData>();
                 string newPlanetName = $"planet {numPlanetsCreated + 1}";
                 planetGameObjectsDict.Add(newPlanetName, planetGameObject);
-                newPlanetData.PopulatePlanetData(newPlanetName, newPlanetPosition, GameManager.Instance.ResourceManager.GetStartingPlanetResources(numPlanetsCreated));
+                // Really need to fix magic numbers on planet radius - Arvie
+                newPlanetData.PopulatePlanetData(newPlanetName, newPlanetPosition, 0.5f * 4, GameManager.Instance.ResourceManager.GetStartingPlanetResources(numPlanetsCreated));
                 newPlanet.GetComponentInChildren<PlanetController>().ConfigurePlanet(newPlanetData);
                 newPlanetsCreated += 1;
                 numPlanetsCreated += 1;
