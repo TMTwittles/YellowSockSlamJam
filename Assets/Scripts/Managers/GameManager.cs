@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public ResourceManager ResourceManager => resourceManager;
     [SerializeField] private TimeManager timeManager;
     public TimeManager TimeManager => timeManager;
+    [SerializeField] private StateManager stateManager;
+    public StateManager StateManager => stateManager;
     
     public static GameManager Instance { get; private set; }
     private void Awake() 
@@ -31,7 +33,8 @@ public class GameManager : MonoBehaviour
     {
         planetPositionManager.GeneratePlanetPositions();
         resourceManager.ConfigureResources();
-        planetManager.InstantiatePlanets();
+        planetManager.InstantiatePlanets(1);
+        stateManager.ConfigureGameState();
     }
     
     

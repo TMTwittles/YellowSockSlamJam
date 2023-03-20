@@ -11,13 +11,27 @@ public class ResourceManager : MonoBehaviour
         resourceData.ConfigureResourcesData();   
     }
 
-    public List<StaticResourceData> GetStartingPlanetResources()
+    public List<StaticResourceData> GetStartingPlanetResources(int planetIndex)
     {
-        return resourceData.StartingPlanetResources;
+        if (planetIndex == 0)
+        {
+            return resourceData.StartingPlanetResources;            
+        }
+        return new List<StaticResourceData>();
     }
 
     public StaticResourceData GetResourceData(string resourceName)
     {
         return resourceData.GlobalResourcesDict[resourceName];
+    }
+
+    public void AddToGlobalResourcesAmount(string resourceName, float amount)
+    {
+        resourceData.AddToGlobalResourceAmount(resourceName, amount);
+    }
+
+    public float GetGlobalResourceAmount(string resourceName)
+    {
+        return resourceData.GlobalResourceAmountDict[resourceName];
     }
 }

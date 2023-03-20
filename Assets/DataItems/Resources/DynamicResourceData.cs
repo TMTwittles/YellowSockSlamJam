@@ -15,6 +15,7 @@ public class DynamicResourceData : ScriptableObject
         data = _data;
         elapsedTime = 0.0f;
         amount = data.StartingResourceAmount;
+        GameManager.Instance.ResourceManager.AddToGlobalResourcesAmount(data.ResourceName, amount);
     }
 
     public float NormalizedTimeReachNewResource()
@@ -29,6 +30,7 @@ public class DynamicResourceData : ScriptableObject
         {
             elapsedTime = 0.0f;
             amount += data.ResourceAmountGain;
+            GameManager.Instance.ResourceManager.AddToGlobalResourcesAmount(data.ResourceName, data.ResourceAmountGain);
         }
     }
 }

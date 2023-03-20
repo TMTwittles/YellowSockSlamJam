@@ -6,8 +6,9 @@ public class ResourcesData : ScriptableObject
 {
     [SerializeField] private List<StaticResourceData> globalResources;
     private Dictionary<string, StaticResourceData> globalResourcesDict;
-    private Dictionary<string, float> globalResourceAmountDict;
     public Dictionary<string, StaticResourceData> GlobalResourcesDict => globalResourcesDict;
+    private Dictionary<string, float> globalResourceAmountDict;
+    public Dictionary<string, float> GlobalResourceAmountDict => globalResourceAmountDict;
 
     [SerializeField] private List<StaticResourceData> startingPlanetResources;
     public List<StaticResourceData> StartingPlanetResources => startingPlanetResources;

@@ -10,10 +10,15 @@ public class PlanetData : ScriptableObject
     public List<StaticResourceData> PlanetResources => planetResources;
     private Dictionary<string, DynamicResourceData> planetResourceAmounts;
 
+    private bool planetSettled = false;
+    public bool PlanetSettled => planetSettled;
+
     public void PopulatePlanetData(string _planetName, List<StaticResourceData> _planetResources)
     {
+
         planetName = _planetName;
         planetResources = _planetResources;
+        planetSettled = planetResources.Count > 0;
         planetResourceAmounts = new Dictionary<string, DynamicResourceData>();
         foreach (StaticResourceData resourceData in planetResources)
         {

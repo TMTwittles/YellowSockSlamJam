@@ -86,4 +86,9 @@ public class PlanetPositionManager : MonoBehaviour
         float positionZ = distanceNoRandom + UnityEngine.Random.Range(randomVariationAmount, randomVariationAmount);
         return new Vector3(positionX, 0.0f, positionZ);
     }
+
+    public void ConsumePlanetPosition(int planetCycleIndex, int planetPositionIndex)
+    {
+        planetPositions[planetCycleIndex].RemoveAt(planetPositionIndex);
+    }
 }

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlanetInfoUIController : MonoBehaviour
 {
+    [SerializeField] private Transform planetActiveInfoTransform;
+    [SerializeField] private Transform planetNotActiveInfoTransform;
     [SerializeField] private TextMeshProUGUI planetNameTmp;
     [SerializeField] private Transform planetResourcesListTransform;
     [SerializeField] private GameObject planetResourceUIDisplayGameObject;
@@ -12,6 +14,19 @@ public class PlanetInfoUIController : MonoBehaviour
     public void ConfigurePlanetInfoUIController(PlanetData _data)
     {
         data = _data;
+
+
+        if (data.PlanetSettled)
+        {
+            planetActiveInfoTransform.gameObject.SetActive(true);
+            planetNotActiveInfoTransform.gameObject.SetActive(false);   
+        }
+        else
+        {
+            planetActiveInfoTransform.gameObject.SetActive(false);
+            planetNotActiveInfoTransform.gameObject.SetActive(true);   
+        }
+
         planetNameTmp.text = data.PlanetName;
         foreach (StaticResourceData resourceData in data.PlanetResources)
         {
