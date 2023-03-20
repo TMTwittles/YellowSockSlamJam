@@ -19,8 +19,12 @@ public class PlanetData : ScriptableObject
 
     public Action NewResourceAdded;
 
-    public void PopulatePlanetData(string _planetName, Vector3 _planetPosition, List<StaticResourceData> _planetResources)
+    private float planetRadius;
+    public float PlanetRadius => planetRadius;
+
+    public void PopulatePlanetData(string _planetName, Vector3 _planetPosition, float _planetRadius, List<StaticResourceData> _planetResources)
     {
+        planetRadius = _planetRadius;
         planetPosition = _planetPosition;
         planetName = _planetName;
         planetResources = _planetResources;
