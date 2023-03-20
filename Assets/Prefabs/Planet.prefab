@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6568702633149132014}
   m_Layer: 0
   m_Name: Planet
-  m_TagString: Untagged
+  m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetUIController: {fileID: 6825001228742707825}
+  shuttleRouteCreator: {fileID: 5923026702477181074}
 --- !u!1 &2686796812808103197
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +220,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1386391373276940734, guid: 48f141888ea78bc4da5df163b4134e15, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 4.23
       objectReference: {fileID: 0}
     - target: {fileID: 1386391373276940734, guid: 48f141888ea78bc4da5df163b4134e15, type: 3}
       propertyPath: m_LocalRotation.w
@@ -263,6 +264,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48f141888ea78bc4da5df163b4134e15, type: 3}
+--- !u!114 &5923026702477181074 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3252997797551288131, guid: 48f141888ea78bc4da5df163b4134e15, type: 3}
+  m_PrefabInstance: {fileID: 9157552129154641873}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f23424d5f7b29364aae5a51b30b7e11f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6825001228742707825 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2423340470344230304, guid: 48f141888ea78bc4da5df163b4134e15, type: 3}

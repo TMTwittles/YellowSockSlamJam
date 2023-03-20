@@ -17,6 +17,14 @@ public class DynamicResourceData : ScriptableObject
         amount = data.StartingResourceAmount;
         GameManager.Instance.ResourceManager.AddToGlobalResourcesAmount(data.ResourceName, amount);
     }
+    
+    public void PopulateDynamicResourceData(StaticResourceData _data, float customAmount)
+    {
+        data = _data;
+        elapsedTime = 0.0f;
+        amount = customAmount;
+        GameManager.Instance.ResourceManager.AddToGlobalResourcesAmount(data.ResourceName, amount);
+    }
 
     public float NormalizedTimeReachNewResource()
     {
@@ -32,5 +40,16 @@ public class DynamicResourceData : ScriptableObject
             amount += data.ResourceAmountGain;
             GameManager.Instance.ResourceManager.AddToGlobalResourcesAmount(data.ResourceName, data.ResourceAmountGain);
         }
+    }
+
+    public void AddCustomAmount(float customAmount)
+    {
+        amount += customAmount;
+        GameManager.Instance.ResourceManager.AddToGlobalResourcesAmount(data.ResourceName, customAmount);
+    }
+
+    public void RemoveCustomAmount(float customAmount, bool modifyGlobalResources)
+    {
+        amount -= customAmount;
     }
 }

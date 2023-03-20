@@ -45,6 +45,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 82528b12e3d32a446b2728e235420e26, type: 2}
+--- !u!1 &2386544464163065681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7090049507489614893}
+  - component: {fileID: 7933805750691426197}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7090049507489614893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2386544464163065681}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5358823688100858927}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7933805750691426197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2386544464163065681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 118de9d110569bc4f8ac2330eec3c943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shuttleConfirmationPanelGameObject: {fileID: 0}
 --- !u!1 &3803805008736920356
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +169,7 @@ Transform:
   - {fileID: 6754631578126291925}
   - {fileID: 320757084781356891}
   - {fileID: 2524062765197447638}
+  - {fileID: 7090049507489614893}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -144,6 +190,7 @@ MonoBehaviour:
   resourceManager: {fileID: 5925210536040481420}
   timeManager: {fileID: 1653836448641525118}
   stateManager: {fileID: 9090799466180249352}
+  uiManager: {fileID: 7933805750691426197}
 --- !u!1 &5358823689543632723
 GameObject:
   m_ObjectHideFlags: 0

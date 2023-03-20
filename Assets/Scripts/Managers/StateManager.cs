@@ -9,6 +9,11 @@ public class StateManager : MonoBehaviour
         data.ConfigureGameStateData();
     }
 
+    public float GetNumRequiredForNextMilestone()
+    {
+        return data.CurrentMilestone;
+    }
+
     private void Update()
     {
         if (data != null)

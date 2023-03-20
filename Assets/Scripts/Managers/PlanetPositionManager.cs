@@ -12,7 +12,7 @@ public class PlanetPositionManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(origin, wireSphereRadius);
+        /*Gizmos.DrawWireSphere(origin, wireSphereRadius);
         Vector3 previousPlanetPosition = Vector3.zero;
         Vector3 startingPlanetInCycle = Vector3.zero;
         if (planetPositions != null)
@@ -36,7 +36,7 @@ public class PlanetPositionManager : MonoBehaviour
                 }
                 Gizmos.DrawLine(startingPlanetInCycle, previousPlanetPosition);
             }
-        }
+        }*/
     }
     
     public void GeneratePlanetPositions()

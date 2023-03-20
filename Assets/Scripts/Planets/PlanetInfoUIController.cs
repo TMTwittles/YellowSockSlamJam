@@ -14,8 +14,12 @@ public class PlanetInfoUIController : MonoBehaviour
     public void ConfigurePlanetInfoUIController(PlanetData _data)
     {
         data = _data;
+        data.NewResourceAdded += OnNewResourceAdded;
+        ConfigureShit();
+    }
 
-
+    private void ConfigureShit()
+    {
         if (data.PlanetSettled)
         {
             planetActiveInfoTransform.gameObject.SetActive(true);
@@ -34,4 +38,15 @@ public class PlanetInfoUIController : MonoBehaviour
             newPlanetResourceUIDisplay.GetComponentInChildren<PlanetResourceInfoUIController>().ConfigurePlanetResourceInfoUIController(resourceData.ResourceName, data);
         }
     }
+
+    private void OnNewResourceAdded()
+    {
+        foreach (PlanetInfoUIController resources in planetResourcesListTransform.GetComponentsInChildren<PlanetInfoUIController>())
+        {
+            Destroy(resources.gameObject);
+        }
+        ConfigureShit();
+    }
+    
+    
 }

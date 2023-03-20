@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     public TimeManager TimeManager => timeManager;
     [SerializeField] private StateManager stateManager;
     public StateManager StateManager => stateManager;
+
+    [SerializeField] private UIManager uiManager;
+    public UIManager UIManager => uiManager;
     
     public static GameManager Instance { get; private set; }
     private void Awake() 

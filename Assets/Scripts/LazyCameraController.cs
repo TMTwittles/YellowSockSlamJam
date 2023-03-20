@@ -14,10 +14,10 @@ public class LazyCameraController : MonoBehaviour
     {
         UpdateInputVector();
         UpdateCameraHeight();
-        UpdateCameraRotationInput();
+        //UpdateCameraRotationInput();
         transform.position += transform.TransformDirection((movementInputVector * movementSpeed) * Time.deltaTime);
         transform.position += new Vector3(0.0f, cameraHeightInput * cameraHeightMovementSpeed * Time.deltaTime, 0.0f);
-        transform.RotateAround(Vector3.up, cameraRotationInput * cameraRotationSpeed * Time.deltaTime);
+        //transform.RotateAround(Vector3.up, cameraRotationInput * cameraRotationSpeed * Time.deltaTime);
     }
 
     void UpdateInputVector()

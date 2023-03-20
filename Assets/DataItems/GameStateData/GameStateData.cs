@@ -7,6 +7,7 @@ public class GameStateData : ScriptableObject
     [SerializeField] private float nextMilestoneIncrement;
     [SerializeField] private int numPlanetsDiscoveredPerMilestone;
     private float currentMilestone;
+    public float CurrentMilestone => currentMilestone;
 
     public void ConfigureGameStateData()
     {
