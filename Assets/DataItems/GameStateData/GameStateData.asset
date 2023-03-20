@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: GameStateData
   m_EditorClassIdentifier: 
   numHumansRequiredToBeatFirstMilestone: 10
-  nextMilestoneIncrement: 10
+  nextMilestoneIncrement: 2
   numPlanetsDiscoveredPerMilestone: 1

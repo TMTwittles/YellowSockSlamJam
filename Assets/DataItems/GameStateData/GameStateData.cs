@@ -17,9 +17,9 @@ public class GameStateData : ScriptableObject
     // THIS IS ALL WIP FUNCTIONALITY
     public void Tick()
     {
-        if (GameManager.Instance.ResourceManager.GetGlobalResourceAmount(ResourceNames.HUMAN) > currentMilestone)
+        if (GameManager.Instance.ResourceManager.GetGlobalResourceAmount(ResourceNames.HUMAN) >= currentMilestone)
         {
-            currentMilestone = currentMilestone * nextMilestoneIncrement;
+            currentMilestone = Mathf.Round(currentMilestone * nextMilestoneIncrement);
             GameManager.Instance.PlanetManager.InstantiatePlanets(numPlanetsDiscoveredPerMilestone);
         }
     }

@@ -28,7 +28,7 @@ public class ShuttleRouteData : ScriptableObject
         endPlanetData = _endPlanetData;
         resourceToShipName = _resourceToShipName;
         amount = _amount;
-        shuttleTravelDuration = Vector3.Distance(startPlanetData.PlanetPosition, endPlanetData.PlanetPosition) * 0.75f;
+        shuttleTravelDuration = Vector3.Distance(startPlanetData.PlanetPosition, endPlanetData.PlanetPosition) * 0.1f * amount;
     }
 
     public void Tick()
