@@ -2,9 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
-public class PlanetPositionMapper : MonoBehaviour
+public class PlanetPositionManager : MonoBehaviour
 {
-    // Start point, in case of this game we could consider this the position of the sun.
     [SerializeField] private Vector3 origin;
     [SerializeField] private float wireSphereRadius;
     [SerializeField] private PlanetPositionGenerationData data;
@@ -13,7 +12,7 @@ public class PlanetPositionMapper : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(origin, wireSphereRadius);
+        /*Gizmos.DrawWireSphere(origin, wireSphereRadius);
         Vector3 previousPlanetPosition = Vector3.zero;
         Vector3 startingPlanetInCycle = Vector3.zero;
         if (planetPositions != null)
@@ -37,7 +36,7 @@ public class PlanetPositionMapper : MonoBehaviour
                 }
                 Gizmos.DrawLine(startingPlanetInCycle, previousPlanetPosition);
             }
-        }
+        }*/
     }
     
     public void GeneratePlanetPositions()
@@ -86,5 +85,10 @@ public class PlanetPositionMapper : MonoBehaviour
         float positionX = distanceNoRandom + UnityEngine.Random.Range(-randomVariationAmount, randomVariationAmount);
         float positionZ = distanceNoRandom + UnityEngine.Random.Range(randomVariationAmount, randomVariationAmount);
         return new Vector3(positionX, 0.0f, positionZ);
+    }
+
+    public void ConsumePlanetPosition(int planetCycleIndex, int planetPositionIndex)
+    {
+        planetPositions[planetCycleIndex].RemoveAt(planetPositionIndex);
     }
 }

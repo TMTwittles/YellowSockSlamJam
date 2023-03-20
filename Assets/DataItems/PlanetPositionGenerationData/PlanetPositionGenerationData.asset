@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc00838a66318f4b82ffdd1219fde41, type: 3}
   m_Name: PlanetPositionGenerationData
   m_EditorClassIdentifier: 
-  numCycles: 4
+  numCycles: 10
   distanceBetweenCycles: 10
   planetsPerCycleMin: 2
-  planetsPerCycleMax: 6
+  planetsPerCycleMax: 5
   planetPositionRandomVariationAmount: 2.5
   planetsPerCycleIncrementMin: 1
   planetsPerCycleIncrementMax: 1.5
