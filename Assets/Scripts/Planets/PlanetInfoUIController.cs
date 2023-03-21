@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlanetInfoUIController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PlanetInfoUIController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI planetNameTmp;
     [SerializeField] private Transform planetResourcesListTransform;
     [SerializeField] private GameObject planetResourceUIDisplayGameObject;
+    [SerializeField] private Image lockIconImage;
     
     private PlanetData data;
     
@@ -23,15 +25,18 @@ public class PlanetInfoUIController : MonoBehaviour
         if (data.PlanetSettled)
         {
             planetActiveInfoTransform.gameObject.SetActive(true);
-            planetNotActiveInfoTransform.gameObject.SetActive(false);   
+            planetNotActiveInfoTransform.gameObject.SetActive(false); 
+            lockIconImage.gameObject.SetActive(false);
+            planetNameTmp.text = data.PlanetName;
         }
         else
         {
             planetActiveInfoTransform.gameObject.SetActive(false);
             planetNotActiveInfoTransform.gameObject.SetActive(true);   
+            lockIconImage.gameObject.SetActive(true);
+            planetNameTmp.text = "";
         }
 
-        planetNameTmp.text = data.PlanetName;
         foreach (StaticResourceData resourceData in data.PlanetResources)
         {
             GameObject newPlanetResourceUIDisplay = Instantiate(planetResourceUIDisplayGameObject, planetResourcesListTransform);

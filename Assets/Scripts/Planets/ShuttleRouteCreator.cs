@@ -8,6 +8,7 @@ public class ShuttleRouteCreator : MonoBehaviour
 {
     [SerializeField] private Button useShuttleButton;
     [SerializeField] private GameObject shuttleRouteGameObject;
+    private InfoCanvasController infoCanvasController;
     private bool userMakingShuttleRoute;
     private PlanetData data;
     private PlanetData endPlanetData;
@@ -24,6 +25,7 @@ public class ShuttleRouteCreator : MonoBehaviour
 
     public void ConfigureShuttleController(PlanetData _data)
     {
+        infoCanvasController = GetComponent<InfoCanvasController>();
         data = _data;
         useShuttleButton.onClick.AddListener(OnShuttleButtonPressed);
     }
@@ -53,6 +55,7 @@ public class ShuttleRouteCreator : MonoBehaviour
                         DisplayShuttleRouteConfirmationPanel();
                         userMakingShuttleRoute = false;
                         useShuttleButton.interactable = true;
+                        infoCanvasController.ToggleInfoCanvasView();
                     }
                 }
             }
@@ -61,6 +64,7 @@ public class ShuttleRouteCreator : MonoBehaviour
             {
                 userMakingShuttleRoute = false;
                 useShuttleButton.interactable = true;
+                infoCanvasController.ToggleInfoCanvasView();
             }
         }
     }
