@@ -110,4 +110,13 @@ public class PlanetData : ScriptableObject
         }
         planetShippableResourceAmounts[resourceName].RemoveCustomAmount(amount, true);
     }
+    
+    public void RemoveNaturalResource(string resourceName, float amount)
+    {
+        if (GetNaturalPlanetResourceAmount(resourceName) < amount)
+        {
+            amount = amount - GetNaturalPlanetResourceAmount(resourceName);
+        }
+        planetNaturalResourceAmounts[resourceName].RemoveCustomAmount(amount, true);
+    }
 }
