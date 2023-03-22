@@ -22,6 +22,8 @@ public class PlanetData : ScriptableObject
     private bool planetSettled = false;
     public bool PlanetSettled => planetSettled;
 
+    private StructureData planetStructure;
+
     public Action NewResourceAdded;
 
     private float planetRadius;
@@ -73,6 +75,14 @@ public class PlanetData : ScriptableObject
     public float GetNaturalPlanetResourceAmount(string resourceName)
     {
         return planetNaturalResourceAmounts[resourceName].Amount;
+    }
+
+    public void TickPlanetStructure()
+    {
+        if (planetStructure != null)
+        {
+            planetStructure.Tick(this);
+        }
     }
 
     public void TickNaturalPlanetResources()

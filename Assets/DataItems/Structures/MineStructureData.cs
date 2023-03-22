@@ -1,6 +1,8 @@
 using UnityEngine;
 
-public class MiniStructureData : StructureData
+
+[CreateAssetMenu(menuName = "Create MineStructureData", fileName = "MineStructureData", order = 0)]
+public class MineStructureData : StructureData
 {
     public override void Tick(PlanetData planetData)
     {
