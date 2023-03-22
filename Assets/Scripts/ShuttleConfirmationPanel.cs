@@ -26,7 +26,7 @@ public class ShuttleConfirmationPanel : MonoBehaviour
         deliveryPanelTitle.text = $"Deliver from {startPlanet.PlanetName} to {endPlanet.PlanetName}";
         resourceDropDown.options.Clear();
 
-        foreach (StaticResourceData staticResourceData in startPlanet.PlanetResources)
+        foreach (StaticResourceData staticResourceData in startPlanet.PlanetShippableResources)
         {
             resourceDropDown.options.Add(new TMP_Dropdown.OptionData(staticResourceData.ResourceName, staticResourceData.ResourceSprite));
         }
@@ -55,7 +55,7 @@ public class ShuttleConfirmationPanel : MonoBehaviour
     private void OnLetsPlayButtonPressed()
     {
         ShuttleRouteData newShuttleRouteData = ScriptableObject.CreateInstance<ShuttleRouteData>();
-        newShuttleRouteData.PopulateShuttleRouteData(deliveryPanelTitle.text, startPlanet, endPlanet, startPlanet.PlanetResources[resourceDropDown.value].ResourceName, amountToShip);
+        newShuttleRouteData.PopulateShuttleRouteData(deliveryPanelTitle.text, startPlanet, endPlanet, startPlanet.PlanetShippableResources[resourceDropDown.value].ResourceName, amountToShip);
         OnLetsPlayButtonPressedListener.Invoke(newShuttleRouteData);
     }
 }

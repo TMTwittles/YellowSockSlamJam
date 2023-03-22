@@ -16,7 +16,10 @@ public class PlanetController : MonoBehaviour
 
     public void Update()
     {
-        data.TickPlanetResources();
+        if (data != null)
+        {
+            data.TickNaturalPlanetResources();   
+        }
     }
 
     public PlanetData GetPlanetData()

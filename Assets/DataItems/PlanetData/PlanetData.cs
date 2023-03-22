@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Create PlanetData", fileName = "PlanetData", order = 0)]
@@ -7,9 +8,13 @@ public class PlanetData : ScriptableObject
 {
     private string planetName;
     public string PlanetName => planetName;
-    private List<StaticResourceData> planetResources;
-    public List<StaticResourceData> PlanetResources => planetResources;
-    private Dictionary<string, DynamicResourceData> planetResourceAmounts;
+    private List<StaticResourceData> planetShippableResources;
+    public List<StaticResourceData> PlanetShippableResources => planetShippableResources;
+    private List<StaticResourceData> planetNaturalResources;
+    public List<StaticResourceData> PlanetNaturalResources => planetNaturalResources;
+    
+    private Dictionary<string, DynamicResourceData> planetShippableResourceAmounts;
+    private Dictionary<string, DynamicResourceData> planetNaturalResourceAmounts;
 
     private Vector3 planetPosition;
     public Vector3 PlanetPosition => planetPosition;
@@ -21,66 +26,88 @@ public class PlanetData : ScriptableObject
 
     private float planetRadius;
     public float PlanetRadius => planetRadius;
+    private float planetPopulation = 0.0f;
 
-    public void PopulatePlanetData(string _planetName, Vector3 _planetPosition, float _planetRadius, List<StaticResourceData> _planetResources)
+    public void PopulatePlanetData(string _planetName, Vector3 _planetPosition, float _planetRadius, StaticResourceData _planetPopulation, List<StaticResourceData> _planetNaturalResources)
     {
         planetRadius = _planetRadius;
         planetPosition = _planetPosition;
         planetName = _planetName;
-        planetResources = _planetResources;
-        planetSettled = planetResources.Count > 0;
-        planetResourceAmounts = new Dictionary<string, DynamicResourceData>();
-        foreach (StaticResourceData resourceData in planetResources)
+        planetSettled = _planetPopulation.StartingResourceAmount > 0;
+        planetPopulation = _planetPopulation.StartingResourceAmount;
+        
+        planetShippableResources = new List<StaticResourceData>();
+        planetShippableResources.Add(_planetPopulation);
+        planetNaturalResources = _planetNaturalResources;
+        planetShippableResourceAmounts = new Dictionary<string, DynamicResourceData>();
+        planetNaturalResourceAmounts = new Dictionary<string, DynamicResourceData>();
+        foreach (StaticResourceData resourceData in planetShippableResources)
         {
             DynamicResourceData newDynamicResourceData = ScriptableObject.CreateInstance<DynamicResourceData>();
             newDynamicResourceData.PopulateDynamicResourceData(resourceData);
-            planetResourceAmounts.Add(resourceData.ResourceName, newDynamicResourceData);
+            planetShippableResourceAmounts.Add(resourceData.ResourceName, newDynamicResourceData);
+        }
+        foreach (StaticResourceData resourceData in planetNaturalResources)
+        {
+            DynamicResourceData newDynamicResourceData = ScriptableObject.CreateInstance<DynamicResourceData>();
+            newDynamicResourceData.PopulateDynamicResourceData(resourceData);
+            planetNaturalResourceAmounts.Add(resourceData.ResourceName, newDynamicResourceData);
         }
     }
 
-    public float GetNormalizedTimeTillNextResourceGain(string resourceName)
+    public float GetNormalizedTimeTillResourceDepleted(string resourceName)
+    {
+        return planetNaturalResourceAmounts[resourceName].NormalizedAmountResourceHasDepleted();
+    }
+
+    /*public float GetNormalizedTimeTillNextResourceGain(string resourceName)
     {
         return planetResourceAmounts[resourceName].NormalizedTimeReachNewResource();
+    }*/
+
+    public float GetShippablePlanetResourceAmount(string resourceName)
+    {
+        return planetShippableResourceAmounts[resourceName].Amount;
     }
 
-    public float GetPlanetResourceAmount(string resourceName)
+    public float GetNaturalPlanetResourceAmount(string resourceName)
     {
-        return planetResourceAmounts[resourceName].Amount;
+        return planetNaturalResourceAmounts[resourceName].Amount;
     }
 
-    public void TickPlanetResources()
+    public void TickNaturalPlanetResources()
     {
-        foreach (DynamicResourceData dynamicResourceData in planetResourceAmounts.Values)
+        foreach (DynamicResourceData dynamicResourceData in planetNaturalResourceAmounts.Values)
         {
-            dynamicResourceData.Tick();
+            dynamicResourceData.TickNaturalResource(planetPopulation);
         }
     }
 
-    public void AddResource(string resourceName, float amount)
+    public void AddShippableResource(string resourceName, float amount)
     {
         planetSettled = true;
-        if (planetResourceAmounts.ContainsKey(resourceName))
+        if (planetShippableResourceAmounts.ContainsKey(resourceName))
         {
-            planetResourceAmounts[resourceName].AddCustomAmount(amount);
+            planetShippableResourceAmounts[resourceName].AddCustomAmount(amount);
         }
         else
         {
             StaticResourceData newResourceData = GameManager.Instance.ResourceManager.GetResourceData(resourceName);
-            planetResources.Add(newResourceData);
+            planetShippableResources.Add(newResourceData);
             DynamicResourceData newDynamicResourceData = ScriptableObject.CreateInstance<DynamicResourceData>();
             newDynamicResourceData.PopulateDynamicResourceData(newResourceData, amount);
-            planetResourceAmounts.Add(resourceName, newDynamicResourceData);
-            planetResourceAmounts[resourceName].AddCustomAmount(amount);
+            planetShippableResourceAmounts.Add(resourceName, newDynamicResourceData);
+            planetShippableResourceAmounts[resourceName].AddCustomAmount(amount);
             NewResourceAdded.Invoke();
         }
     }
 
-    public void RemoveResource(string resourceName, float amount)
+    public void RemoveShippableResource(string resourceName, float amount)
     {
-        if (GetPlanetResourceAmount(resourceName) < amount)
+        if (GetShippablePlanetResourceAmount(resourceName) < amount)
         {
-            amount = amount - GetPlanetResourceAmount(resourceName);
+            amount = amount - GetShippablePlanetResourceAmount(resourceName);
         }
-        planetResourceAmounts[resourceName].RemoveCustomAmount(amount, false);
+        planetShippableResourceAmounts[resourceName].RemoveCustomAmount(amount, true);
     }
 }

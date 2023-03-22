@@ -44,20 +44,20 @@ public class ShuttleRouteData : ScriptableObject
     {
         if (shuttleTravelProgress <= 0.0f)
         {
-            startPlanetData.RemoveResource(resourceToShipName, amount);
+            startPlanetData.RemoveShippableResource(resourceToShipName, amount);
         }
         
         shuttleTravelProgress += Time.deltaTime * GameManager.Instance.TimeManager.TimeModifier;
         if (shuttleTravelProgress >= shuttleTravelDuration)
         {
-            endPlanetData.AddResource(resourceToShipName, amount);
+            endPlanetData.RemoveShippableResource(resourceToShipName, amount);
             ShuttleRouteComplete.Invoke();
         }
     }
 
     public void CancelShuttleRoute()
     {
-        startPlanetData.AddResource(resourceToShipName, amount);
+        startPlanetData.RemoveShippableResource(resourceToShipName, amount);
         ShuttleRouteCanceled.Invoke();
     }
     

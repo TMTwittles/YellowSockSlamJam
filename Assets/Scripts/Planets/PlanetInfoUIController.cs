@@ -7,9 +7,12 @@ public class PlanetInfoUIController : MonoBehaviour
     [SerializeField] private Transform planetActiveInfoTransform;
     [SerializeField] private Transform planetNotActiveInfoTransform;
     [SerializeField] private TextMeshProUGUI planetNameTmp;
-    [SerializeField] private Transform planetResourcesListTransform;
-    [SerializeField] private GameObject planetResourceUIDisplayGameObject;
+    [SerializeField] private Transform planetNaturalResourceListTransform;
+    [SerializeField] private Transform planetShippableResourceListTransform;
+    [SerializeField] private GameObject planetShippableResourceUIDisplayGameObject;
+    [SerializeField] private GameObject planetNaturalResourceUIDisplayGameObject;
     [SerializeField] private Image lockIconImage;
+    [SerializeField] private Image humanIconImage;
     
     private PlanetData data;
     
@@ -27,26 +30,41 @@ public class PlanetInfoUIController : MonoBehaviour
             planetActiveInfoTransform.gameObject.SetActive(true);
             planetNotActiveInfoTransform.gameObject.SetActive(false); 
             lockIconImage.gameObject.SetActive(false);
-            planetNameTmp.text = data.PlanetName;
+            planetNameTmp.text = $" = {data.GetShippablePlanetResourceAmount(ResourceNames.HUMAN)}";
+            humanIconImage.gameObject.SetActive(true);
         }
         else
         {
             planetActiveInfoTransform.gameObject.SetActive(false);
             planetNotActiveInfoTransform.gameObject.SetActive(true);   
             lockIconImage.gameObject.SetActive(true);
+            humanIconImage.gameObject.SetActive(false);
             planetNameTmp.text = "";
         }
 
-        foreach (StaticResourceData resourceData in data.PlanetResources)
+        foreach (StaticResourceData resourceData in data.PlanetShippableResources)
         {
-            GameObject newPlanetResourceUIDisplay = Instantiate(planetResourceUIDisplayGameObject, planetResourcesListTransform);
+            GameObject newPlanetResourceUIDisplay =
+                Instantiate(planetShippableResourceUIDisplayGameObject, planetShippableResourceListTransform);
+            newPlanetResourceUIDisplay.GetComponentInChildren<PlanetResourceInfoUIController>().ConfigurePlanetResourceInfoUIController(resourceData.ResourceName, data);
+        }
+
+        foreach (StaticResourceData resourceData in data.PlanetNaturalResources)
+        {
+            GameObject newPlanetResourceUIDisplay =
+                Instantiate(planetNaturalResourceUIDisplayGameObject, planetNaturalResourceListTransform);
             newPlanetResourceUIDisplay.GetComponentInChildren<PlanetResourceInfoUIController>().ConfigurePlanetResourceInfoUIController(resourceData.ResourceName, data);
         }
     }
 
     private void OnNewResourceAdded()
     {
-        foreach (PlanetInfoUIController resources in planetResourcesListTransform.GetComponentsInChildren<PlanetInfoUIController>())
+        foreach (PlanetInfoUIController resources in planetShippableResourceListTransform.GetComponentsInChildren<PlanetInfoUIController>())
+        {
+            Destroy(resources.gameObject);
+        }
+
+        foreach (PlanetInfoUIController resources in planetNaturalResourceListTransform.GetComponentsInChildren<PlanetInfoUIController>())
         {
             Destroy(resources.gameObject);
         }
