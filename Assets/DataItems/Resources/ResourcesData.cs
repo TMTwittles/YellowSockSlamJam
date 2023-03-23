@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Create ResourcesData", fileName = "ResourcesData", order = 0)]
 public class ResourcesData : ScriptableObject
@@ -10,8 +11,13 @@ public class ResourcesData : ScriptableObject
     private Dictionary<string, float> globalResourceAmountDict;
     public Dictionary<string, float> GlobalResourceAmountDict => globalResourceAmountDict;
 
-    [SerializeField] private List<StaticResourceData> startingPlanetResources;
-    public List<StaticResourceData> StartingPlanetResources => startingPlanetResources;
+    [SerializeField] private StaticResourceData startingPlanetPopulationResource;
+    public StaticResourceData StartingPlanetPopulationResource => startingPlanetPopulationResource;
+    
+    [SerializeField] private StaticResourceData planetPopulationResource;
+    public StaticResourceData PlanetPopulationResource => planetPopulationResource;
+    [FormerlySerializedAs("startingPlanetResources")] [SerializeField] private List<StaticResourceData> startingPlanetNaturalResources;
+    public List<StaticResourceData> StartingPlanetNaturalResources => startingPlanetNaturalResources;
 
     public void ConfigureResourcesData()
     {
@@ -24,7 +30,7 @@ public class ResourcesData : ScriptableObject
         }
     }
 
-    public void AddToGlobalResourceAmount(string resourceName, float amount)
+    public void AddToGlobalShippableResourceAmount(string resourceName, float amount)
     {
         globalResourceAmountDict[resourceName] += amount;
     }

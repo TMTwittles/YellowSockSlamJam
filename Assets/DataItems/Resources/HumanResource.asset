@@ -15,5 +15,6 @@ MonoBehaviour:
   resourceName: Human
   resourceSprite: {fileID: 21300000, guid: ff46b7487c033474cb1f74dc7eabbb50, type: 3}
   timeSecondsGainResource: 1.25
-  startingResourceAmount: 5
+  startingResourceAmount: 0
+  standardResourceAmountDrain: 0
   resourceAmountGain: 1

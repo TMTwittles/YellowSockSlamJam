@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PlanetPositionGenerationData
   m_EditorClassIdentifier: 
   numCycles: 10
-  distanceBetweenCycles: 10
+  distanceBetweenCycles: 50
   planetsPerCycleMin: 2
   planetsPerCycleMax: 5
-  planetPositionRandomVariationAmount: 2.5
+  planetPositionRandomVariationAmount: 10
   planetsPerCycleIncrementMin: 1
   planetsPerCycleIncrementMax: 1.5

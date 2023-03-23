@@ -7,46 +7,55 @@ public class PlanetInfoUIController : MonoBehaviour
     [SerializeField] private Transform planetActiveInfoTransform;
     [SerializeField] private Transform planetNotActiveInfoTransform;
     [SerializeField] private TextMeshProUGUI planetNameTmp;
-    [SerializeField] private Transform planetResourcesListTransform;
-    [SerializeField] private GameObject planetResourceUIDisplayGameObject;
-    [SerializeField] private Image lockIconImage;
+    [SerializeField] private Transform planetNaturalResourceListTransform;
+    [SerializeField] private Transform planetShippableResourceListTransform;
+    [SerializeField] private GameObject planetShippableResourceUIDisplayGameObject;
+    [SerializeField] private GameObject planetNaturalResourceUIDisplayGameObject;
+    [SerializeField] private Image humanIconImage;
+    [SerializeField] private StructureInfoUIController structureInfoUIController;
     
     private PlanetData data;
     
     public void ConfigurePlanetInfoUIController(PlanetData _data)
     {
         data = _data;
-        data.NewResourceAdded += OnNewResourceAdded;
+        data.NewResourceAdded += OnResourceModified;
+        data.ResourceRemoved += OnResourceModified;
+        structureInfoUIController.Configure(data);
+        planetActiveInfoTransform.gameObject.SetActive(true);
+        planetNotActiveInfoTransform.gameObject.SetActive(false);
+        planetNameTmp.text = $" = {data.GetShippablePlanetResourceAmount(ResourceNames.HUMAN)}";
+        humanIconImage.gameObject.SetActive(true);
         ConfigureShit();
     }
 
     private void ConfigureShit()
     {
-        if (data.PlanetSettled)
+        planetNameTmp.text = $" = {data.GetShippablePlanetResourceAmount(ResourceNames.HUMAN)}";
+        
+        foreach (StaticResourceData resourceData in data.PlanetShippableResources)
         {
-            planetActiveInfoTransform.gameObject.SetActive(true);
-            planetNotActiveInfoTransform.gameObject.SetActive(false); 
-            lockIconImage.gameObject.SetActive(false);
-            planetNameTmp.text = data.PlanetName;
-        }
-        else
-        {
-            planetActiveInfoTransform.gameObject.SetActive(false);
-            planetNotActiveInfoTransform.gameObject.SetActive(true);   
-            lockIconImage.gameObject.SetActive(true);
-            planetNameTmp.text = "";
+            GameObject newPlanetResourceUIDisplay =
+                Instantiate(planetShippableResourceUIDisplayGameObject, planetShippableResourceListTransform);
+            newPlanetResourceUIDisplay.GetComponentInChildren<PlanetResourceInfoUIController>().ConfigurePlanetResourceInfoUIController(resourceData.ResourceName, data);
         }
 
-        foreach (StaticResourceData resourceData in data.PlanetResources)
+        foreach (StaticResourceData resourceData in data.PlanetNaturalResources)
         {
-            GameObject newPlanetResourceUIDisplay = Instantiate(planetResourceUIDisplayGameObject, planetResourcesListTransform);
+            GameObject newPlanetResourceUIDisplay =
+                Instantiate(planetNaturalResourceUIDisplayGameObject, planetNaturalResourceListTransform);
             newPlanetResourceUIDisplay.GetComponentInChildren<PlanetResourceInfoUIController>().ConfigurePlanetResourceInfoUIController(resourceData.ResourceName, data);
         }
     }
 
-    private void OnNewResourceAdded()
+    private void OnResourceModified()
     {
-        foreach (PlanetInfoUIController resources in planetResourcesListTransform.GetComponentsInChildren<PlanetInfoUIController>())
+        foreach (PlanetResourceInfoUIController resources in planetShippableResourceListTransform.GetComponentsInChildren<PlanetResourceInfoUIController>())
+        {
+            Destroy(resources.gameObject);
+        }
+
+        foreach (PlanetResourceInfoUIController resources in planetNaturalResourceListTransform.GetComponentsInChildren<PlanetResourceInfoUIController>())
         {
             Destroy(resources.gameObject);
         }

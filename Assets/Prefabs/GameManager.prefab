@@ -170,6 +170,7 @@ Transform:
   - {fileID: 320757084781356891}
   - {fileID: 2524062765197447638}
   - {fileID: 7090049507489614893}
+  - {fileID: 7259176919678077572}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -191,6 +192,7 @@ MonoBehaviour:
   timeManager: {fileID: 1653836448641525118}
   stateManager: {fileID: 9090799466180249352}
   uiManager: {fileID: 7933805750691426197}
+  structureManager: {fileID: 9110346217952518995}
 --- !u!1 &5358823689543632723
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,6 +285,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetGameObject: {fileID: 2534470613368224042, guid: 78065da8eee6ccf44b87c0faccede4dd, type: 3}
+--- !u!1 &6839515447645598718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7259176919678077572}
+  - component: {fileID: 9110346217952518995}
+  m_Layer: 0
+  m_Name: StructureManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7259176919678077572
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6839515447645598718}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5358823688100858927}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9110346217952518995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6839515447645598718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae6bf2af244aec843befbc8620c1c9c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  globalStructureData: {fileID: 11400000, guid: a3c5f6868067f4a439d9e9c4f704c87f, type: 2}
 --- !u!1 &8195005367039817624
 GameObject:
   m_ObjectHideFlags: 0

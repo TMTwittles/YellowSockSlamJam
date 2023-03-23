@@ -11,6 +11,8 @@ public class StaticResourceData : ScriptableObject
     public float TimeSecondsGainResource => timeSecondsGainResource;
     [SerializeField] private float startingResourceAmount;
     public float StartingResourceAmount => startingResourceAmount;
+    [SerializeField] private float standardResourceAmountDrain;
+    public float StandardResourceDrain => standardResourceAmountDrain;
     [SerializeField] private float resourceAmountGain;
     public float ResourceAmountGain => resourceAmountGain;
 }

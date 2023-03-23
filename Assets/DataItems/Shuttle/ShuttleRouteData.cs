@@ -37,27 +37,28 @@ public class ShuttleRouteData : ScriptableObject
         // the magic number of 1.75f is there to make shuttles start a bit further away from the planet to prevent clipping. - Arvie
         shuttleRouteStartDestination = startPlanetData.PlanetPosition + (endPlanetData.PlanetPosition - startPlanetData.PlanetPosition).normalized * startPlanetData.PlanetRadius * 1.75f;
         shuttleRouteEndDestination = endPlanetData.PlanetPosition + (startPlanetData.PlanetPosition - endPlanetData.PlanetPosition).normalized * endPlanetData.PlanetRadius * 1.75f;
-        shuttleTravelDuration = Vector3.Distance(shuttleRouteStartDestination, shuttleRouteEndDestination) * 0.1f * amount;
+        // Rhys, I removed this value. Soz. Need quicker debugging.
+        shuttleTravelDuration = Vector3.Distance(shuttleRouteStartDestination, shuttleRouteEndDestination) * 0.5f;
     }
 
     public void Tick()
     {
         if (shuttleTravelProgress <= 0.0f)
         {
-            startPlanetData.RemoveResource(resourceToShipName, amount);
+            startPlanetData.RemoveShippableResource(resourceToShipName, amount);
         }
         
         shuttleTravelProgress += Time.deltaTime * GameManager.Instance.TimeManager.TimeModifier;
         if (shuttleTravelProgress >= shuttleTravelDuration)
         {
-            endPlanetData.AddResource(resourceToShipName, amount);
+            endPlanetData.AddShippableResource(resourceToShipName, amount);
             ShuttleRouteComplete.Invoke();
         }
     }
 
     public void CancelShuttleRoute()
     {
-        startPlanetData.AddResource(resourceToShipName, amount);
+        startPlanetData.AddShippableResource(resourceToShipName, amount);
         ShuttleRouteCanceled.Invoke();
     }
     

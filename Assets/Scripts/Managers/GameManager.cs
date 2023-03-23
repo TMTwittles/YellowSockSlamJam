@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -18,7 +17,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private UIManager uiManager;
     public UIManager UIManager => uiManager;
-    
+    [SerializeField] private StructureManager structureManager;
+    public StructureManager StructureManager => structureManager;
+
+    public Action GameConfigured;
+
     public static GameManager Instance { get; private set; }
     private void Awake() 
     {
@@ -30,14 +33,22 @@ public class GameManager : MonoBehaviour
         { 
             Instance = this; 
         } 
+        Configure();
+    }
+
+    private void Configure()
+    {
+        planetPositionManager.GeneratePlanetPositions();
+        resourceManager.ConfigureResources();
+        structureManager.ConfigureStructureManager();
+        planetManager.InstantiatePlanets(1);
+        stateManager.ConfigureGameState();
+        GameConfigured?.Invoke();
     }
 
     private void Start()
     {
-        planetPositionManager.GeneratePlanetPositions();
-        resourceManager.ConfigureResources();
-        planetManager.InstantiatePlanets(1);
-        stateManager.ConfigureGameState();
+        
     }
     
     

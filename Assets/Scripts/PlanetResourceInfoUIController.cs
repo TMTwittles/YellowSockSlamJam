@@ -1,10 +1,10 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlanetResourceInfoUIController : MonoBehaviour
 {
+    [SerializeField] private bool shippableResource;
     [SerializeField] private Image resourceImage;
     [SerializeField] private TextMeshProUGUI resourceAmountTmp;
     [SerializeField] private Image resourceTickerImage;
@@ -16,15 +16,30 @@ public class PlanetResourceInfoUIController : MonoBehaviour
         resourceName = _resourceName;
         data = _data;
         resourceImage.sprite = GameManager.Instance.ResourceManager.GetResourceData(resourceName).ResourceSprite;
-        resourceAmountTmp.text = data.GetPlanetResourceAmount(resourceName).ToString();
+
+        if (shippableResource)
+        {
+            resourceAmountTmp.text = data.GetShippablePlanetResourceAmount(resourceName).ToString();   
+        }
+        else
+        {
+            resourceTickerImage.fillAmount = data.GetNormalizedTimeTillResourceDepleted(resourceName);
+        }
     }
 
     void Update()
     {
         if (data != null)
         {
-            resourceAmountTmp.text = data.GetPlanetResourceAmount(resourceName).ToString();
-            resourceTickerImage.fillAmount = data.GetNormalizedTimeTillNextResourceGain(resourceName);
+            if (shippableResource)
+            {
+                resourceAmountTmp.text = data.GetShippablePlanetResourceAmount(resourceName).ToString();
+                //resourceTickerImage.fillAmount = data.GetNormalizedTimeTillNextResourceGain(resourceName);
+            }
+            else
+            {
+                resourceTickerImage.fillAmount = data.GetNormalizedTimeTillResourceDepleted(resourceName);
+            }
         }
     }
 }

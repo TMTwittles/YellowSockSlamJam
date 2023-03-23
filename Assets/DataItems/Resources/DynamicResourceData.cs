@@ -26,18 +26,23 @@ public class DynamicResourceData : ScriptableObject
         GameManager.Instance.ResourceManager.AddToGlobalResourcesAmount(data.ResourceName, amount);
     }
 
+    public float NormalizedAmountResourceHasDepleted()
+    {
+        return (amount / data.StartingResourceAmount);
+    }
+
     public float NormalizedTimeReachNewResource()
     {
         return (elapsedTime / data.TimeSecondsGainResource);
     }
 
-    public void Tick()
+    public void TickNaturalResource(float numHumans)
     {
         elapsedTime += Time.deltaTime * GameManager.Instance.TimeManager.TimeModifier;
         if (elapsedTime > data.TimeSecondsGainResource)
         {
             elapsedTime = 0.0f;
-            amount += data.ResourceAmountGain;
+            amount -= data.StandardResourceDrain * (numHumans * 0.1f);
             GameManager.Instance.ResourceManager.AddToGlobalResourcesAmount(data.ResourceName, data.ResourceAmountGain);
         }
     }
