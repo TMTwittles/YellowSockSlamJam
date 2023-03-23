@@ -223,6 +223,8 @@ MonoBehaviour:
   movementSpeed: 50
   cameraHeightMovementSpeed: -5000
   cameraRotationSpeed: 4
+  minZoom: 20
+  maxZoom: 80
 --- !u!4 &296927323
 Transform:
   m_ObjectHideFlags: 0
@@ -694,6 +696,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5358823690012682231, guid: fe614b2ff2be0d744ae9129e78ea25dc, type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 296927322}
     - target: {fileID: 7933805750691426197, guid: fe614b2ff2be0d744ae9129e78ea25dc, type: 3}
       propertyPath: shuttleConfirmationPanelGameObject
       value: 

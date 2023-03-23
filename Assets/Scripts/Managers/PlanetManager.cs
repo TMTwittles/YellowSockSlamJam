@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlanetManager : MonoBehaviour
 {
     [SerializeField] private GameObject planetGameObject;
+    [SerializeField] private LazyCameraController cameraController; //sorry, not ideal, but this is the easiest way to access the planet position index
     private int currentCycle;
     private int numPlanetsCreated = 0;
     private int currentPlanetPositionIndex = 0;
@@ -41,6 +42,8 @@ public class PlanetManager : MonoBehaviour
 
                 if (newPlanetsCreated >= numPlanetsToInstantiate)
                 {
+                    if (newPlanetPosition.magnitude > cameraController.FurthestPlanetMagnitude)
+                        cameraController.FurthestPlanetMagnitude = newPlanetPosition.magnitude;
                     return;
                 }
             }
