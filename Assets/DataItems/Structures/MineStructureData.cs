@@ -18,9 +18,17 @@ public class MineStructureData : StructureData
 
     public override void Tick(PlanetData planetData)
     {
-        if (planetData.PlanetNaturalResources.Count <= 0.0f || planetData.PlanetPopulation < requiredHumans)
+        if (planetData.PlanetPopulation < requiredHumans)
         {
             return;
+        }
+
+        foreach (StaticResourceData resourceData in planetData.PlanetNaturalResources)
+        {
+            if (planetData.GetNaturalPlanetResourceAmount(resourceData.ResourceName) <= 0.0f)
+            {
+                return;
+            }
         }
         
         elapsedTime += Time.deltaTime * GameManager.Instance.TimeManager.TimeModifier;

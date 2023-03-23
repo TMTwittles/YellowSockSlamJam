@@ -33,16 +33,22 @@ public class GameManager : MonoBehaviour
         { 
             Instance = this; 
         } 
+        Configure();
     }
 
-    private void Start()
+    private void Configure()
     {
         planetPositionManager.GeneratePlanetPositions();
         resourceManager.ConfigureResources();
         structureManager.ConfigureStructureManager();
         planetManager.InstantiatePlanets(1);
         stateManager.ConfigureGameState();
-        GameConfigured.Invoke();
+        GameConfigured?.Invoke();
+    }
+
+    private void Start()
+    {
+        
     }
     
     

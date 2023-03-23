@@ -6,6 +6,7 @@ public abstract class StructureData : ScriptableObject
     [SerializeField] private string structureName;
     public string StructureName => structureName;
     [SerializeField] protected List<StaticResourceData> requiredResources;
+    [SerializeField] protected List<StaticResourceData> outputResources;
     public List<StaticResourceData> RequiredResources => requiredResources;
     [SerializeField] protected float timeStructureGenerates;
     public float TimeStructureGenerates => timeStructureGenerates;

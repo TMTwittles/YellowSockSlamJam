@@ -7,13 +7,15 @@ public class ShuttleRouteInfoUIController : MonoBehaviour
     //[SerializeField] private TextMeshProUGUI shuttleRouteName;
     [SerializeField] private Image timeRemainingImage;
     [SerializeField] private TextMeshProUGUI resourceAmount;
+    [SerializeField] private Image resourceImage;
     [SerializeField] private Button cancelButton;
     private ShuttleRouteData data;
 
     public void ConfigureShuttleRouteInfoController(ShuttleRouteData shuttleRouteData)
     {
         //shuttleRouteName.text = shuttleRouteData.ShuttleRouteName;
-        resourceAmount.text = $"{shuttleRouteData.Amount} {shuttleRouteData.ResourceToShipName}";
+        resourceAmount.text = $"{shuttleRouteData.Amount}";
+        resourceImage.sprite = GameManager.Instance.ResourceManager.GetResourceData(shuttleRouteData.ResourceToShipName).ResourceSprite;
         cancelButton.onClick.AddListener(OnCancelButtonPressed);
         data = shuttleRouteData;
     }

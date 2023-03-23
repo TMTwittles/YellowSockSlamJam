@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,12 @@ public class StructureSpawnButtonManager : MonoBehaviour
     
     void Start()
     {
-        GameManager.Instance.GameConfigured += OnGameConfigured;
+        OnGameConfigured();
+    }
+
+    private void OnDestroy()
+    {
+        //GameManager.Instance.GameConfigured -= OnGameConfigured;
     }
 
     void OnGameConfigured()

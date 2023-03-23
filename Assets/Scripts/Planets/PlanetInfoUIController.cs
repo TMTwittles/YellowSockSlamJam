@@ -19,7 +19,8 @@ public class PlanetInfoUIController : MonoBehaviour
     public void ConfigurePlanetInfoUIController(PlanetData _data)
     {
         data = _data;
-        data.NewResourceAdded += OnNewResourceAdded;
+        data.NewResourceAdded += OnResourceModified;
+        data.ResourceRemoved += OnResourceModified;
         structureInfoUIController.Configure(data);
         planetActiveInfoTransform.gameObject.SetActive(true);
         planetNotActiveInfoTransform.gameObject.SetActive(false);
@@ -30,6 +31,8 @@ public class PlanetInfoUIController : MonoBehaviour
 
     private void ConfigureShit()
     {
+        planetNameTmp.text = $" = {data.GetShippablePlanetResourceAmount(ResourceNames.HUMAN)}";
+        
         foreach (StaticResourceData resourceData in data.PlanetShippableResources)
         {
             GameObject newPlanetResourceUIDisplay =
@@ -45,7 +48,7 @@ public class PlanetInfoUIController : MonoBehaviour
         }
     }
 
-    private void OnNewResourceAdded()
+    private void OnResourceModified()
     {
         foreach (PlanetResourceInfoUIController resources in planetShippableResourceListTransform.GetComponentsInChildren<PlanetResourceInfoUIController>())
         {

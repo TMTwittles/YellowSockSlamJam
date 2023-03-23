@@ -8,11 +8,11 @@ using UnityEngine.UI;
 
 public class ShuttleConfirmationPanel : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI deliveryPanelTitle;
     [SerializeField] private TMP_Dropdown resourceDropDown;
     [SerializeField] private Slider amountSlider;
     [SerializeField] private TextMeshProUGUI amountTMP;
     [SerializeField] private Button letsPlayButton;
+    [SerializeField] private Button cancelButton;
     private int amountToShip = 25;
     private Action<ShuttleRouteData> OnLetsPlayButtonPressedListener;
     private PlanetData startPlanet;
@@ -23,7 +23,6 @@ public class ShuttleConfirmationPanel : MonoBehaviour
     {
         startPlanet = _startPlanet;
         endPlanet = _endPlanet;
-        deliveryPanelTitle.text = $"Deliver from {startPlanet.PlanetName} to {endPlanet.PlanetName}";
         resourceDropDown.options.Clear();
 
         foreach (StaticResourceData staticResourceData in startPlanet.PlanetShippableResources)
@@ -35,6 +34,7 @@ public class ShuttleConfirmationPanel : MonoBehaviour
         amountSlider.value = 1.0f;
         amountTMP.text = amountToShip.ToString();
         OnLetsPlayButtonPressedListener = pleaseInvokeThis;
+        cancelButton.onClick.AddListener(OnCancelButtonPressed);
         letsPlayButton.onClick.AddListener(OnLetsPlayButtonPressed);   
     }
 
@@ -44,18 +44,26 @@ public class ShuttleConfirmationPanel : MonoBehaviour
         endPlanet = null;
         OnLetsPlayButtonPressedListener = null;
         letsPlayButton.onClick.RemoveListener(OnLetsPlayButtonPressed);
+        cancelButton.onClick.RemoveListener(OnCancelButtonPressed);
     }
 
     void Update()
     {
-        amountToShip = (int) (amountSlider.value * 24.0f) + 1;
+        float shippingAmount = startPlanet.GetShippablePlanetResourceAmount(resourceDropDown.options[resourceDropDown.value].text);
+        amountToShip = (int) (amountSlider.value * shippingAmount);
         amountTMP.text = amountToShip.ToString();
     }
 
     private void OnLetsPlayButtonPressed()
     {
         ShuttleRouteData newShuttleRouteData = ScriptableObject.CreateInstance<ShuttleRouteData>();
-        newShuttleRouteData.PopulateShuttleRouteData(deliveryPanelTitle.text, startPlanet, endPlanet, startPlanet.PlanetShippableResources[resourceDropDown.value].ResourceName, amountToShip);
+        newShuttleRouteData.PopulateShuttleRouteData(null, startPlanet, endPlanet, startPlanet.PlanetShippableResources[resourceDropDown.value].ResourceName, amountToShip);
         OnLetsPlayButtonPressedListener.Invoke(newShuttleRouteData);
+    }
+
+    private void OnCancelButtonPressed()
+    {
+        Cleanup();
+        gameObject.SetActive(false);
     }
 }

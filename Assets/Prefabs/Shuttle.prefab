@@ -59,6 +59,18 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 2.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2787490978783909390, guid: 4191650059902d34b8e071e63c703e91, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787490978783909390, guid: 4191650059902d34b8e071e63c703e91, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -0.00000023841858
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787490978783909390, guid: 4191650059902d34b8e071e63c703e91, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5822315672982866373, guid: 4191650059902d34b8e071e63c703e91, type: 3}
       propertyPath: m_Name
       value: ShuttleRouteInfoCanvas
