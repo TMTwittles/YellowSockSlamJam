@@ -16,6 +16,16 @@ public abstract class StructureData : ScriptableObject
     protected float elapsedTime = 0.0f;
     [SerializeField] private GameObject structureGameObject;
     public GameObject StructureGameObject => structureGameObject;
+    protected Dictionary<string, StaticResourceData> outputResourcesDict;
+    
+    public Dictionary<string, StaticResourceData> OutputResourceDict => outputResourcesDict;
+
+    public abstract void ConfigureStructureData(PlanetData planetData);
+
+    public float GetNormalizedTimeNextResourceGain()
+    {
+        return (elapsedTime / timeStructureGenerates);
+    }
 
     public abstract void Tick(PlanetData planetData);
 }

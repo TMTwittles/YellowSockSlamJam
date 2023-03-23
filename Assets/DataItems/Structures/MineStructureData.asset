@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: MineStructureData
   m_EditorClassIdentifier: 
   structureName: Mine
-  requiredResources: []
-  timeStructureGenerates: 5
+  requiredResources:
+  - {fileID: 11400000, guid: 3841c0a14124c0a4e95f101a6ed1b2a6, type: 2}
+  - {fileID: 11400000, guid: b0466f6332596f94da7813adf80414b7, type: 2}
+  timeStructureGenerates: 10
   resourceGain: 10
   requiredHumans: 5
   structureGameObject: {fileID: 1565506393610370497, guid: a94764404ca0b9a488f9a5eaaef6341c, type: 3}

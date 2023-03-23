@@ -11,6 +11,9 @@ public class ResourcesData : ScriptableObject
     private Dictionary<string, float> globalResourceAmountDict;
     public Dictionary<string, float> GlobalResourceAmountDict => globalResourceAmountDict;
 
+    [SerializeField] private StaticResourceData startingPlanetPopulationResource;
+    public StaticResourceData StartingPlanetPopulationResource => startingPlanetPopulationResource;
+    
     [SerializeField] private StaticResourceData planetPopulationResource;
     public StaticResourceData PlanetPopulationResource => planetPopulationResource;
     [FormerlySerializedAs("startingPlanetResources")] [SerializeField] private List<StaticResourceData> startingPlanetNaturalResources;

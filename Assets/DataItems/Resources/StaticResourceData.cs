@@ -15,9 +15,4 @@ public class StaticResourceData : ScriptableObject
     public float StandardResourceDrain => standardResourceAmountDrain;
     [SerializeField] private float resourceAmountGain;
     public float ResourceAmountGain => resourceAmountGain;
-
-    public void SetStartingResourceAmount(float _startingResourceAmount)
-    {
-        startingResourceAmount = _startingResourceAmount;
-    }
 }

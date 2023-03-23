@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ShuttleRouteInfoUIController : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI shuttleRouteName;
+    //[SerializeField] private TextMeshProUGUI shuttleRouteName;
     [SerializeField] private Image timeRemainingImage;
     [SerializeField] private TextMeshProUGUI resourceAmount;
     [SerializeField] private Button cancelButton;
@@ -12,7 +12,7 @@ public class ShuttleRouteInfoUIController : MonoBehaviour
 
     public void ConfigureShuttleRouteInfoController(ShuttleRouteData shuttleRouteData)
     {
-        shuttleRouteName.text = shuttleRouteData.ShuttleRouteName;
+        //shuttleRouteName.text = shuttleRouteData.ShuttleRouteName;
         resourceAmount.text = $"{shuttleRouteData.Amount} {shuttleRouteData.ResourceToShipName}";
         cancelButton.onClick.AddListener(OnCancelButtonPressed);
         data = shuttleRouteData;

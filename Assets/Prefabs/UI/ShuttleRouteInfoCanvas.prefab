@@ -426,7 +426,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 2
+  m_fontSize: 2.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -565,9 +565,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3890892699690307358, guid: f9a1b1ab112f9b341a48bc58e61e719a, type: 3}
       propertyPath: m_Name
-      value: ShuttleRouteInfoCanvas 1
+      value: ShuttleRouteInfoCanvas
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3890892700528747307, guid: f9a1b1ab112f9b341a48bc58e61e719a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5755753310327234229, guid: f9a1b1ab112f9b341a48bc58e61e719a, type: 3}
+    - {fileID: 2345737438001912647, guid: f9a1b1ab112f9b341a48bc58e61e719a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f9a1b1ab112f9b341a48bc58e61e719a, type: 3}
 --- !u!224 &4785087687026627794 stripped
 RectTransform:

@@ -42,11 +42,20 @@ public class StructureSpawnButtonController : MonoBehaviour
                 Ray screenRay = Camera.main.ScreenPointToRay(screenPosition);
                 RaycastHit hit;
                 bool hitPlanet = Physics.Raycast(screenRay, out hit);
-                if (hitPlanet && hit.collider.transform.parent.gameObject.CompareTag("Planet"))                                   
+                if (hitPlanet && hit.collider.transform.parent.gameObject.CompareTag("Planet") && hit.collider.GetComponentInParent<PlanetController>().HasStructure() == false)                                   
                 {
-                    Debug.Log("HIT");
-                    spawnedStructureGameObject.transform.position = hit.collider.gameObject.transform.position + 
-                                                                    new Vector3(0.0f, 8 * 0.5f, 0.0f);           
+                    Vector3 newStructurePosition = hit.collider.gameObject.transform.position + 
+                                                   new Vector3(0.0f, 8 * 0.5f, 0.0f);
+                    spawnedStructureGameObject.transform.position = newStructurePosition;
+
+                    if (Input.GetButton("Fire1"))
+                    {
+                        hit.collider.GetComponentInParent<PlanetController>().AddStructure(structureData);
+                        Instantiate(structureData.StructureGameObject, newStructurePosition, Quaternion.identity, hit.collider.transform.parent);
+                        spawnStructure = false;
+                        Destroy(spawnedStructureGameObject);
+                        spawnButtonManager.SetSpawnButtonInteractivity(true);
+                    }
                 }
                 else
                 {

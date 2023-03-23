@@ -57,7 +57,7 @@ public class ShuttleRouteData : ScriptableObject
 
     public void CancelShuttleRoute()
     {
-        startPlanetData.RemoveShippableResource(resourceToShipName, amount);
+        startPlanetData.AddShippableResource(resourceToShipName, amount);
         ShuttleRouteCanceled.Invoke();
     }
     

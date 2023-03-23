@@ -11,8 +11,8 @@ public class PlanetInfoUIController : MonoBehaviour
     [SerializeField] private Transform planetShippableResourceListTransform;
     [SerializeField] private GameObject planetShippableResourceUIDisplayGameObject;
     [SerializeField] private GameObject planetNaturalResourceUIDisplayGameObject;
-    [SerializeField] private Image lockIconImage;
     [SerializeField] private Image humanIconImage;
+    [SerializeField] private StructureInfoUIController structureInfoUIController;
     
     private PlanetData data;
     
@@ -20,28 +20,16 @@ public class PlanetInfoUIController : MonoBehaviour
     {
         data = _data;
         data.NewResourceAdded += OnNewResourceAdded;
+        structureInfoUIController.Configure(data);
+        planetActiveInfoTransform.gameObject.SetActive(true);
+        planetNotActiveInfoTransform.gameObject.SetActive(false);
+        planetNameTmp.text = $" = {data.GetShippablePlanetResourceAmount(ResourceNames.HUMAN)}";
+        humanIconImage.gameObject.SetActive(true);
         ConfigureShit();
     }
 
     private void ConfigureShit()
     {
-        if (data.PlanetSettled)
-        {
-            planetActiveInfoTransform.gameObject.SetActive(true);
-            planetNotActiveInfoTransform.gameObject.SetActive(false); 
-            lockIconImage.gameObject.SetActive(false);
-            planetNameTmp.text = $" = {data.GetShippablePlanetResourceAmount(ResourceNames.HUMAN)}";
-            humanIconImage.gameObject.SetActive(true);
-        }
-        else
-        {
-            planetActiveInfoTransform.gameObject.SetActive(false);
-            planetNotActiveInfoTransform.gameObject.SetActive(true);   
-            lockIconImage.gameObject.SetActive(true);
-            humanIconImage.gameObject.SetActive(false);
-            planetNameTmp.text = "";
-        }
-
         foreach (StaticResourceData resourceData in data.PlanetShippableResources)
         {
             GameObject newPlanetResourceUIDisplay =
@@ -59,12 +47,12 @@ public class PlanetInfoUIController : MonoBehaviour
 
     private void OnNewResourceAdded()
     {
-        foreach (PlanetInfoUIController resources in planetShippableResourceListTransform.GetComponentsInChildren<PlanetInfoUIController>())
+        foreach (PlanetResourceInfoUIController resources in planetShippableResourceListTransform.GetComponentsInChildren<PlanetResourceInfoUIController>())
         {
             Destroy(resources.gameObject);
         }
 
-        foreach (PlanetInfoUIController resources in planetNaturalResourceListTransform.GetComponentsInChildren<PlanetInfoUIController>())
+        foreach (PlanetResourceInfoUIController resources in planetNaturalResourceListTransform.GetComponentsInChildren<PlanetResourceInfoUIController>())
         {
             Destroy(resources.gameObject);
         }

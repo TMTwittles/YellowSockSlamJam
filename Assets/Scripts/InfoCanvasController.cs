@@ -1,18 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class InfoCanvasController : MonoBehaviour
+public class InfoCanvasController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private Button expandButton;
     [SerializeField] private Animator animator;
     private bool inDetailView = false;
-    
-    public void OnEnable()
-    {
-        expandButton.onClick.AddListener(ToggleInfoCanvasView);
-    }
 
     public void ToggleInfoCanvasView()
     {
@@ -26,5 +18,15 @@ public class InfoCanvasController : MonoBehaviour
             animator.SetTrigger(AnimationKeys.InfoCanvasExpandTrigger);
             inDetailView = !inDetailView;
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        ToggleInfoCanvasView();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        ToggleInfoCanvasView();
     }
 }

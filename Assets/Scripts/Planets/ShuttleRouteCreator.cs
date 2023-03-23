@@ -25,7 +25,7 @@ public class ShuttleRouteCreator : MonoBehaviour
 
     public void ConfigureShuttleController(PlanetData _data)
     {
-        infoCanvasController = GetComponent<InfoCanvasController>();
+        //infoCanvasController = GetComponent<InfoCanvasController>();
         data = _data;
         useShuttleButton.onClick.AddListener(OnShuttleButtonPressed);
     }
@@ -55,7 +55,7 @@ public class ShuttleRouteCreator : MonoBehaviour
                         DisplayShuttleRouteConfirmationPanel();
                         userMakingShuttleRoute = false;
                         useShuttleButton.interactable = true;
-                        infoCanvasController.ToggleInfoCanvasView();
+                        //infoCanvasController.ToggleInfoCanvasView();
                     }
                 }
             }
@@ -64,7 +64,7 @@ public class ShuttleRouteCreator : MonoBehaviour
             {
                 userMakingShuttleRoute = false;
                 useShuttleButton.interactable = true;
-                infoCanvasController.ToggleInfoCanvasView();
+                //infoCanvasController.ToggleInfoCanvasView();
             }
         }
     }

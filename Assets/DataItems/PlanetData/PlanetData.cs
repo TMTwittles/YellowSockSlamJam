@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Create PlanetData", fileName = "PlanetData", order = 0)]
@@ -23,12 +22,16 @@ public class PlanetData : ScriptableObject
     public bool PlanetSettled => planetSettled;
 
     private StructureData planetStructure;
+    public StructureData PlanetStructure => planetStructure;
 
     public Action NewResourceAdded;
 
     private float planetRadius;
     public float PlanetRadius => planetRadius;
     private float planetPopulation = 0.0f;
+    public float PlanetPopulation => planetPopulation; 
+
+    public Action StructureAdded;
 
     public void PopulatePlanetData(string _planetName, Vector3 _planetPosition, float _planetRadius, StaticResourceData _planetPopulation, List<StaticResourceData> _planetNaturalResources)
     {
@@ -128,5 +131,12 @@ public class PlanetData : ScriptableObject
             amount = amount - GetNaturalPlanetResourceAmount(resourceName);
         }
         planetNaturalResourceAmounts[resourceName].RemoveCustomAmount(amount, true);
+    }
+
+    public void AddStructure(StructureData _structureData)
+    {
+        planetStructure = _structureData;
+        planetStructure.ConfigureStructureData(this);
+        StructureAdded.Invoke();
     }
 }

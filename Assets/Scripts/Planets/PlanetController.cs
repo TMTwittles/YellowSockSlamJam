@@ -19,7 +19,18 @@ public class PlanetController : MonoBehaviour
         if (data != null)
         {
             data.TickNaturalPlanetResources();   
+            data.TickPlanetStructure();
         }
+    }
+
+    public bool HasStructure()
+    {
+        return data.PlanetStructure != null;
+    }
+
+    public void AddStructure(StructureData structureData)
+    {
+        data.AddStructure(structureData);
     }
 
     public PlanetData GetPlanetData()

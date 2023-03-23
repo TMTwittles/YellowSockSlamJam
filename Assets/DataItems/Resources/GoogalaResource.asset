@@ -16,5 +16,5 @@ MonoBehaviour:
   resourceSprite: {fileID: 21300000, guid: 3c6f689b1a19f844db5466514cd927b9, type: 3}
   timeSecondsGainResource: 1.25
   startingResourceAmount: 100
-  standardResourceAmountDrain: 1
+  standardResourceAmountDrain: 0.1
   resourceAmountGain: 1

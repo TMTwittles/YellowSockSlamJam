@@ -37,11 +37,10 @@ public class ResourceManager : MonoBehaviour
     {
         if (planetIndex == 0)
         {
-            return resourceData.PlanetPopulationResource;
+            return resourceData.StartingPlanetPopulationResource;
         }
-        // NEW PLANETS HAVE A POPULATION OF 0.
+        
         StaticResourceData newPlanetPopulation = resourceData.PlanetPopulationResource;
-        newPlanetPopulation.SetStartingResourceAmount(0.0f);
         return newPlanetPopulation;
     }
 
