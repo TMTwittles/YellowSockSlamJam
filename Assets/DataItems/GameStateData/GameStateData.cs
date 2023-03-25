@@ -21,6 +21,8 @@ public class GameStateData : ScriptableObject
     private float currentMilestone;
     public float CurrentMilestone => currentMilestone;
 
+    private ResourcesData globalResourcesData;
+
     public void ConfigureGameStateData()
     {
         elapsedTime = timeSecondsTillRatKingDestroysUniverse;
@@ -41,9 +43,18 @@ public class GameStateData : ScriptableObject
     public void Tick()
     {
         elapsedTime -= Time.deltaTime * GameManager.Instance.TimeManager.TimeModifier;
+        
+        if (GameManager.Instance.ResourceManager.GetGlobalResourceAmount(ResourceNames.HUMAN) <= 0.0f)
+        {
+            GameManager.Instance.UIManager.GameOverPanel.gameObject.SetActive(true);
+            GameManager.Instance.TimeManager.SetState(TimeManager.TimeModifierState.PAUSED);
+            GameManager.Instance.UIManager.GameOverPanel.gameObject.GetComponent<GameOverPanel>().ShowGameOverPanel("The entire rat population has gone. Make sure to increase your population using burrows.");
+        }
         if (elapsedTime <= 0.0f)
         {
-            
+            GameManager.Instance.UIManager.GameOverPanel.gameObject.SetActive(true);
+            GameManager.Instance.TimeManager.SetState(TimeManager.TimeModifierState.PAUSED);
+            GameManager.Instance.UIManager.GameOverPanel.gameObject.GetComponent<GameOverPanel>().ShowGameOverPanel("The rat king destroyed the universe! Slow the rat king by sacrificing the rat population and resources!");
         }
     }
 }

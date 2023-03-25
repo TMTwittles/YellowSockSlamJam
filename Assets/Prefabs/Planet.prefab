@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 479266606201653499}
   - component: {fileID: 6568702633149132014}
-  - component: {fileID: 7715474919094552910}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Planet
@@ -48,20 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetUIController: {fileID: 5426739990849858298}
-  shuttleRouteCreator: {fileID: 7715474919094552910}
---- !u!114 &7715474919094552910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2534470613368224042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f23424d5f7b29364aae5a51b30b7e11f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shuttleRouteGameObject: {fileID: 500135672312433167, guid: e92c76f4f179e7c49b1d0e2adb15275e, type: 3}
+  shuttleRouteCreator: {fileID: 0}
 --- !u!1 &2686796812808103197
 GameObject:
   m_ObjectHideFlags: 0

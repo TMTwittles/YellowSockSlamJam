@@ -35,4 +35,9 @@ public class ResourcesData : ScriptableObject
     {
         globalResourceAmountDict[resourceName] += amount;
     }
+    
+    public void RemoveFromGlobalShippableResourceAmount(string resourceName, float amount)
+    {
+        globalResourceAmountDict[resourceName] -= amount;
+    }
 }

@@ -1,12 +1,13 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class StructureSpawnButtonManager : MonoBehaviour
 {
+    [SerializeField] private ShuttleRouteCreator shuttleRouteCreator;
+    public ShuttleRouteCreator ShuttleRouteCreator => shuttleRouteCreator;
     [SerializeField] private GameObject structureSpawnButton;
     [SerializeField] private Transform structureButtonListTransform;
-    private List<StructureSpawnButtonController> spawnButtons;
+    [SerializeField] private List<StructureSpawnButtonController> spawnButtons;
     
     void Start()
     {

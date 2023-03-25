@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bb351cbe11e2ce4ba2616738971666b, type: 3}
   m_Name: PlanetStructureData
   m_EditorClassIdentifier: 
-  structureIcon: {fileID: 21300000, guid: 7ddb9e887ec35a74d96ddd05e5d91a24, type: 3}
+  structureIcon: {fileID: 21300000, guid: 250dbff1b70bfe34da287cafe73e3462, type: 3}
   structureName: Planet
   requiredResources:
   - {fileID: 11400000, guid: caa7957b13434c04fbab6b2e187623cb, type: 2}

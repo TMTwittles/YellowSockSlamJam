@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07411a2714e482348a927c0c4eabc02e, type: 3}
   m_Name: NestStructureData
   m_EditorClassIdentifier: 
-  structureIcon: {fileID: 21300000, guid: 3c6f689b1a19f844db5466514cd927b9, type: 3}
+  structureIcon: {fileID: 21300000, guid: 74af6a70a8eb1204d8c1235c7be09519, type: 3}
   structureName: Nest
   requiredResources:
   - {fileID: 11400000, guid: b0466f6332596f94da7813adf80414b7, type: 2}

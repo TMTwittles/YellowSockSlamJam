@@ -10,6 +10,7 @@ public class StructureSpawnButtonController : MonoBehaviour
     private GameObject spawnedStructureGameObject;
     private bool spawnStructure = false;
     private StructureData structureData;
+    private bool userIsPlacingSomething = false;
 
     public void SetButtonInteractivity(bool buttonInteractivity)
     {
@@ -23,17 +24,44 @@ public class StructureSpawnButtonController : MonoBehaviour
         button.interactable = structureData.StartingAmount > 0;
         button.onClick.AddListener(OnClick);
         uiController.ConfigureStructureUIController(structureData);
+        GameManager.Instance.UserPlacingShuttle += OnUserPlacingShuttle;
+        GameManager.Instance.UserPlacingStructure += OnUserPlacingStructure;
+    }
+
+    private void OnUserPlacingStructure(bool placingStructure)
+    {
+        if (placingStructure)
+        {
+            userIsPlacingSomething = true;
+        }
+        else
+        {
+            userIsPlacingSomething = false;
+        }
+    }
+
+    private void OnUserPlacingShuttle(bool placingShuttle)
+    {
+        if (placingShuttle)
+        {
+            userIsPlacingSomething = true;
+        }
+        else
+        {
+            userIsPlacingSomething = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        button.interactable = structureData.Amount > 0;
+        button.interactable = userIsPlacingSomething == false && structureData.Amount > 0;
         
         if (spawnStructure)
         {
             if (Input.GetButton("Fire2"))
             {
+                GameManager.Instance.InvokeUserPlacingStructure(false);
                 spawnStructure = false;
                 Destroy(spawnedStructureGameObject);
                 spawnButtonManager.SetSpawnButtonInteractivity(true);
@@ -61,6 +89,7 @@ public class StructureSpawnButtonController : MonoBehaviour
                             spawnStructure = false;
                             Destroy(spawnedStructureGameObject);
                             structureData.DecreaseAmount();
+                            GameManager.Instance.InvokeUserPlacingStructure(false);
                             spawnButtonManager.SetSpawnButtonInteractivity(true);   
                         }
                     }
@@ -72,10 +101,12 @@ public class StructureSpawnButtonController : MonoBehaviour
                         
                         if (Input.GetButton("Fire1"))
                         {
-                            hit.collider.GetComponentInParent<ShuttleRouteCreator>().OnShuttleButtonPressed();
+                            spawnButtonManager.ShuttleRouteCreator.ConfigureShuttleController(hit.collider.gameObject.GetComponentInParent<PlanetController>().GetPlanetData());
+                            spawnButtonManager.ShuttleRouteCreator.OnShuttleButtonPressed();
                             spawnStructure = false;
                             Destroy(spawnedStructureGameObject);
                             structureData.DecreaseAmount();
+                            GameManager.Instance.InvokeUserPlacingStructure(false);
                             spawnButtonManager.SetSpawnButtonInteractivity(true);
                         }
                     }
@@ -106,6 +137,7 @@ public class StructureSpawnButtonController : MonoBehaviour
     {
         if (spawnStructure == false && structureData.Amount > 0)
         {
+            GameManager.Instance.InvokeUserPlacingStructure(true);
             spawnButtonManager.SetSpawnButtonInteractivity(false);
             spawnedStructureGameObject = Instantiate(structureData.StructureGameObject, Input.mousePosition, Quaternion.identity);
             spawnStructure = true;   

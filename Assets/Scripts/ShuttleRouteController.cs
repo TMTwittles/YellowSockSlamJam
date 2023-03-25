@@ -3,6 +3,7 @@ using UnityEngine;
 public class ShuttleRouteController : MonoBehaviour
 {
     [SerializeField] private GameObject shuttleGameObject;
+    [SerializeField] private LineRenderer lineRenderer;
     private ShuttleRouteData data;
     private GameObject activeShuttleGameObject;
     private GameObject newShuttleRouteInfoDisplay;
@@ -24,6 +25,8 @@ public class ShuttleRouteController : MonoBehaviour
         data.ShuttleRouteCanceled += OnShuttleRouteCanceled;
         activeShuttleGameObject = Instantiate(shuttleGameObject, data.ShuttleRouteStartDestination, Quaternion.identity, transform);
         activeShuttleGameObject.GetComponent<ShuttleController>().ConfigureShuttle(data);
+        lineRenderer.SetPosition(0, data.StartPlanetData.PlanetPosition);
+        lineRenderer.SetPosition(1, data.EndPlanetData.PlanetPosition);
     }
 
     private void Update()
@@ -36,6 +39,7 @@ public class ShuttleRouteController : MonoBehaviour
 
     private void OnShuttleRouteCanceled()
     {
+        GameManager.Instance.StructureManager.GlobalStructureData.GetStructureData(StructureNames.Shuttle).AddToAmount();
         Destroy(activeShuttleGameObject);
         Destroy(data);
         Destroy(gameObject);
@@ -48,6 +52,7 @@ public class ShuttleRouteController : MonoBehaviour
         {
             GameManager.Instance.StateManager.AddTime(GameManager.Instance.ResourceManager.GetResourceData(data.ResourceToShipName).TimePreventDoomsday * data.Amount);
         }
+        GameManager.Instance.StructureManager.GlobalStructureData.GetStructureData(StructureNames.Shuttle).AddToAmount();
         Destroy(activeShuttleGameObject);
         Destroy(data);
         Destroy(gameObject);

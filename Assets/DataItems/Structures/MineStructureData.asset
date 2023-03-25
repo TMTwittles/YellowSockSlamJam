@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1952908409366c42a9175b68b985a81, type: 3}
   m_Name: MineStructureData
   m_EditorClassIdentifier: 
-  structureIcon: {fileID: 21300000, guid: 3c6f689b1a19f844db5466514cd927b9, type: 3}
+  structureIcon: {fileID: 21300000, guid: 74398c8beace63f42a15c433432fe3f4, type: 3}
   structureName: Mine
   requiredResources:
   - {fileID: 11400000, guid: b0466f6332596f94da7813adf80414b7, type: 2}
+  - {fileID: 11400000, guid: 6fccff8330dd3114f9d25eb909f50f49, type: 2}
   outputResources: []
   requiredResourceAmount: 2
   timeStructureGenerates: 10

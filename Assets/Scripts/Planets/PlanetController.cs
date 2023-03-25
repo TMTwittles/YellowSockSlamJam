@@ -11,7 +11,6 @@ public class PlanetController : MonoBehaviour
     {
         data = _data;
         planetUIController.ConfigurePlanetInfoUIController(data);
-        shuttleRouteCreator.ConfigureShuttleController(data);
     }
 
     public void Update()

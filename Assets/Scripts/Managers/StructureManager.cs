@@ -5,7 +5,7 @@ using UnityEngine;
 public class StructureManager : MonoBehaviour
 {
     [SerializeField] private GlobalStructureData globalStructureData;
-
+    public GlobalStructureData GlobalStructureData => globalStructureData;
     public Action PlayerAcquiredNewStructure;
     
     public void ConfigureStructureManager()

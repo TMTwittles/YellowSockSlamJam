@@ -14,7 +14,7 @@ public class ShuttleRouteInfoUIController : MonoBehaviour
     public void ConfigureShuttleRouteInfoController(ShuttleRouteData shuttleRouteData)
     {
         //shuttleRouteName.text = shuttleRouteData.ShuttleRouteName;
-        resourceAmount.text = $"{shuttleRouteData.Amount}";
+        resourceAmount.text = $"{shuttleRouteData.Amount} x";
         resourceImage.sprite = GameManager.Instance.ResourceManager.GetResourceData(shuttleRouteData.ResourceToShipName).ResourceSprite;
         cancelButton.onClick.AddListener(OnCancelButtonPressed);
         data = shuttleRouteData;

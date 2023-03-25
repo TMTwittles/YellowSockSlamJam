@@ -20,6 +20,6 @@ public class ShuttleController : MonoBehaviour
 
     void Update()
     {
-        transform.position = startPosition + route * data.GetNormalizedTimeTillShuttleRouteComplete();
+        transform.position = startPosition + route * data.GetNormalizedTimeTillShuttleRouteComplete() + new Vector3(0.0f, 2.0f, 0.0f);
     }
 }

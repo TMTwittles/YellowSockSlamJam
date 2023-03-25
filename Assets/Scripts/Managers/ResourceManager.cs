@@ -66,6 +66,11 @@ public class ResourceManager : MonoBehaviour
         resourceData.AddToGlobalShippableResourceAmount(resourceName, amount);
     }
 
+    public void RemoveFromGlobalResourcesAmount(string resourceName, float amount)
+    {
+        resourceData.RemoveFromGlobalShippableResourceAmount(resourceName, amount);
+    }
+
     public float GetGlobalResourceAmount(string resourceName)
     {
         return resourceData.GlobalResourceAmountDict[resourceName];
