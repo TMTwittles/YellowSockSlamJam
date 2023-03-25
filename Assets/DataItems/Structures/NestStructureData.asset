@@ -22,7 +22,7 @@ MonoBehaviour:
   timeStructureGenerates: 1
   resourceGain: 20
   requiredHumans: 5
-  structureGameObject: {fileID: 1565506393610370497, guid: a94764404ca0b9a488f9a5eaaef6341c, type: 3}
+  structureGameObject: {fileID: 1565506393610370497, guid: 24744f1d4c4261b4ea132f6e9e0a8599, type: 3}
   structureDescription: Breeds more rats by consuming natural resources
   startingAmount: 0
   amount: 0

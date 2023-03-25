@@ -22,7 +22,7 @@ MonoBehaviour:
   timeStructureGenerates: 10
   resourceGain: 10
   requiredHumans: 5
-  structureGameObject: {fileID: 1565506393610370497, guid: a94764404ca0b9a488f9a5eaaef6341c, type: 3}
+  structureGameObject: {fileID: 1565506393610370497, guid: 87fe13568f21b6344aefa97d7c23a110, type: 3}
   structureDescription: Converts natural resources in shippable resources.
   startingAmount: 1
   amount: 1

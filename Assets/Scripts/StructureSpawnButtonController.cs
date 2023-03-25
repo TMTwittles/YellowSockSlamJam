@@ -85,13 +85,13 @@ public class StructureSpawnButtonController : MonoBehaviour
                         hit.collider.GetComponentInParent<PlanetController>().HasStructure() == false)
                     {
                         Vector3 newStructurePosition = hit.collider.gameObject.transform.position +
-                                                       new Vector3(0.0f, 8 * 0.5f, 0.0f);
+                                                       new Vector3(0.0f, 9.0f, 0.0f);
                         spawnedStructureGameObject.transform.position = newStructurePosition;
                         
                         if (Input.GetButton("Fire1"))
                         {
                             hit.collider.GetComponentInParent<PlanetController>().AddStructure(structureData);
-                            Instantiate(structureData.StructureGameObject, newStructurePosition, Quaternion.identity,
+                            GameObject spawnedStructure = Instantiate(structureData.StructureGameObject, newStructurePosition, Quaternion.identity,
                                 hit.collider.transform.parent);
                             spawnStructure = false;
                             Destroy(spawnedStructureGameObject);
@@ -103,7 +103,7 @@ public class StructureSpawnButtonController : MonoBehaviour
                     else 
                     {
                         Vector3 newStructurePosition = hit.collider.gameObject.transform.position +
-                                                       new Vector3(0.0f, 8 * 0.5f, 0.0f);
+                                                       new Vector3(0.0f, 10, 0.0f);
                         spawnedStructureGameObject.transform.position = newStructurePosition;
                         
                         if (Input.GetButton("Fire1"))

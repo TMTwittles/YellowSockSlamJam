@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AResource
   m_EditorClassIdentifier: 
   resourceName: Googala
-  resourceSprite: {fileID: 21300000, guid: 3c6f689b1a19f844db5466514cd927b9, type: 3}
+  resourceSprite: {fileID: 21300000, guid: 9fbfd8f7fbd19c442934d20b2960c072, type: 3}
   timeSecondsGainResource: 1.25
   startingResourceAmount: 100
   standardResourceAmountDrain: 0.1

@@ -38,7 +38,7 @@ public class PlanetManager : MonoBehaviour
         planetGameObjectsDict.Add(newPlanetName, planetGameObject);
         newPlanetData.SetRatKingStructureToBuy(ratKingData.StructuresToBuy);
         // Really need to fix magic numbers on planet radius - Arvie
-        newPlanetData.PopulateRatKingData(newPlanetName, newPlanetPosition, 0.02f * 350.0f, GameManager.Instance.ResourceManager.GetStartingPlanetPopulation(numPlanetsCreated), GameManager.Instance.ResourceManager.GetStartingPlanetResources(numPlanetsCreated));
+        newPlanetData.PopulateRatKingData(newPlanetName, newPlanetPosition, 0.03f * 500, GameManager.Instance.ResourceManager.GetStartingPlanetPopulation(numPlanetsCreated), GameManager.Instance.ResourceManager.GetStartingPlanetResources(numPlanetsCreated));
         newPlanet.GetComponentInChildren<RatKingController>().ConfigureRatKing(newPlanetData);
     }
     

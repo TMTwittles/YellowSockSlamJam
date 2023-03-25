@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e17c2425bae0e44d882d7e9b3f1e4db, type: 3}
   m_Name: GameStateData
   m_EditorClassIdentifier: 
+  secondsIncreaseDoomsdayTime: 30
+  timeIncreaseModifierAmount: 0.1
   timeSecondsTillRatKingDestroysUniverse: 180
   numHumansRequiredToBeatFirstMilestone: 10
   nextMilestoneIncrement: 2

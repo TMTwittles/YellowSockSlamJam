@@ -13,4 +13,9 @@ public class GameOverPanel : MonoBehaviour
         gameOverReasonTMP.text = gameOverReason;
         button.onClick.AddListener(GameManager.Instance.UIManager.StartGame);
     }
+
+    public void OnPressRetry()
+    {
+        
+    }
 }
