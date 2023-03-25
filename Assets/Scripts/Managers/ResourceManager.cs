@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
 {
+
     [SerializeField] private ResourcesData resourceData;
+    public ResourcesData ResourcesData => resourceData;
 
     public void ConfigureResources()
     {

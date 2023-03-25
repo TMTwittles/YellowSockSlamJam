@@ -6,6 +6,7 @@ using UnityEngine.Serialization;
 public class ResourcesData : ScriptableObject
 {
     [SerializeField] private List<StaticResourceData> globalResources;
+    public List<StaticResourceData> GlobalResources => globalResources;
     private Dictionary<string, StaticResourceData> globalResourcesDict;
     public Dictionary<string, StaticResourceData> GlobalResourcesDict => globalResourcesDict;
     private Dictionary<string, float> globalResourceAmountDict;

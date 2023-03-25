@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         planetPositionManager.GeneratePlanetPositions();
         resourceManager.ConfigureResources();
         structureManager.ConfigureStructureManager();
-        planetManager.InstantiatePlanets(1);
+        planetManager.InstantiateStartingPlanets();
         stateManager.ConfigureGameState();
         GameConfigured?.Invoke();
     }

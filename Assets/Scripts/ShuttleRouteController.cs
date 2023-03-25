@@ -21,7 +21,7 @@ public class ShuttleRouteController : MonoBehaviour
     {
         data = _data;
         data.ShuttleRouteComplete += OnShuttleRouteComplete;
-        data.ShuttleRouteCanceled += OnShuttleRouteComplete;
+        data.ShuttleRouteCanceled += OnShuttleRouteCanceled;
         activeShuttleGameObject = Instantiate(shuttleGameObject, data.ShuttleRouteStartDestination, Quaternion.identity, transform);
         activeShuttleGameObject.GetComponent<ShuttleController>().ConfigureShuttle(data);
     }
@@ -34,8 +34,20 @@ public class ShuttleRouteController : MonoBehaviour
         }
     }
 
+    private void OnShuttleRouteCanceled()
+    {
+        Destroy(activeShuttleGameObject);
+        Destroy(data);
+        Destroy(gameObject);
+    }
+
     private void OnShuttleRouteComplete()
     {
+        // This is bad code btw. 
+        if (data.EndPlanetData.PlanetName.Contains("RatKing"))
+        {
+            GameManager.Instance.StateManager.AddTime(GameManager.Instance.ResourceManager.GetResourceData(data.ResourceToShipName).TimePreventDoomsday * data.Amount);
+        }
         Destroy(activeShuttleGameObject);
         Destroy(data);
         Destroy(gameObject);

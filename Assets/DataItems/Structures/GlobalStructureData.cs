@@ -19,7 +19,7 @@ public class GlobalStructureData : ScriptableObject
         {
             structureDict.Add(structureData.StructureName, structureData);
             // TODO: This will probs need to be controlled somewhere.
-            playerStructureCountDict.Add(structureData.StructureName, 1);
+            playerStructureCountDict.Add(structureData.StructureName, structureData.Amount);
         }
     }
 

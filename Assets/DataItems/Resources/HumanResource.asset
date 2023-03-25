@@ -18,3 +18,4 @@ MonoBehaviour:
   startingResourceAmount: 0
   standardResourceAmountDrain: 0
   resourceAmountGain: 1
+  timePreventDoomsday: 2

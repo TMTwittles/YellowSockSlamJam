@@ -1,12 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ShuttleRouteCreator : MonoBehaviour
 {
-    [SerializeField] private Button useShuttleButton;
     [SerializeField] private GameObject shuttleRouteGameObject;
     private InfoCanvasController infoCanvasController;
     private bool userMakingShuttleRoute;
@@ -27,12 +25,10 @@ public class ShuttleRouteCreator : MonoBehaviour
     {
         //infoCanvasController = GetComponent<InfoCanvasController>();
         data = _data;
-        useShuttleButton.onClick.AddListener(OnShuttleButtonPressed);
     }
 
-    void OnShuttleButtonPressed()
+    public void OnShuttleButtonPressed()
     {
-        useShuttleButton.interactable = false;
         userMakingShuttleRoute = true;
     }
 
@@ -49,13 +45,17 @@ public class ShuttleRouteCreator : MonoBehaviour
                 if (hitPlanet)
                 {
                     // Ensure we are hitting a planet and not the same planet this shuttle is launching from.
-                    if (hit.collider.gameObject.GetComponentInParent<PlanetController>() && hit.collider.gameObject.transform.position != data.PlanetPosition)
+                    if ((hit.collider.gameObject.GetComponentInParent<PlanetController>()) && hit.collider.gameObject.transform.position != data.PlanetPosition)
                     {
                         endPlanetData = hit.collider.gameObject.GetComponentInParent<PlanetController>().GetPlanetData();
                         DisplayShuttleRouteConfirmationPanel();
                         userMakingShuttleRoute = false;
-                        useShuttleButton.interactable = true;
-                        //infoCanvasController.ToggleInfoCanvasView();
+                    }
+                    else if (hit.collider.gameObject.GetComponentInParent<RatKingController>())
+                    {
+                        endPlanetData = hit.collider.gameObject.GetComponentInParent<RatKingController>().GetRatKingData();
+                        DisplayShuttleRouteConfirmationPanel();
+                        userMakingShuttleRoute = false;
                     }
                 }
             }
@@ -63,8 +63,6 @@ public class ShuttleRouteCreator : MonoBehaviour
             if (Input.GetButton("Fire2"))
             {
                 userMakingShuttleRoute = false;
-                useShuttleButton.interactable = true;
-                //infoCanvasController.ToggleInfoCanvasView();
             }
         }
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class DynamicResourceData : ScriptableObject
 {
     private StaticResourceData data;
+    public StaticResourceData Data => data;
     private float elapsedTime;
     public float ElapsedTime => elapsedTime;
     private float amount;
@@ -56,5 +57,10 @@ public class DynamicResourceData : ScriptableObject
     public void RemoveCustomAmount(float customAmount, bool modifyGlobalResources)
     {
         amount -= customAmount;
+    }
+
+    public void SetCustomAmount(float customAmount)
+    {
+        amount = customAmount;
     }
 }

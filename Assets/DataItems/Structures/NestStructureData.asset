@@ -10,14 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07411a2714e482348a927c0c4eabc02e, type: 3}
-  m_Name: BrothelStructureData
+  m_Name: NestStructureData
   m_EditorClassIdentifier: 
-  structureName: Brothel
+  structureIcon: {fileID: 21300000, guid: 3c6f689b1a19f844db5466514cd927b9, type: 3}
+  structureName: Nest
   requiredResources:
-  - {fileID: 11400000, guid: 3841c0a14124c0a4e95f101a6ed1b2a6, type: 2}
+  - {fileID: 11400000, guid: b0466f6332596f94da7813adf80414b7, type: 2}
   outputResources:
-  - {fileID: 11400000, guid: caa7957b13434c04fbab6b2e187623cb, type: 2}
+  - {fileID: 11400000, guid: 3841c0a14124c0a4e95f101a6ed1b2a6, type: 2}
+  requiredResourceAmount: 5
   timeStructureGenerates: 1
   resourceGain: 20
   requiredHumans: 5
   structureGameObject: {fileID: 1565506393610370497, guid: a94764404ca0b9a488f9a5eaaef6341c, type: 3}
+  structureDescription: Breeds more rats by consuming natural resources
+  startingAmount: 0
+  amount: 0

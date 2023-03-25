@@ -12,7 +12,8 @@ public class PlanetData : ScriptableObject
     private List<StaticResourceData> planetNaturalResources;
     public List<StaticResourceData> PlanetNaturalResources => planetNaturalResources;
     
-    private Dictionary<string, DynamicResourceData> planetShippableResourceAmounts;
+    protected Dictionary<string, DynamicResourceData> planetShippableResourceAmounts;
+    public Dictionary<string, DynamicResourceData> PlanetShippableResourceAmount => planetShippableResourceAmounts;
     private Dictionary<string, DynamicResourceData> planetNaturalResourceAmounts;
 
     private Vector3 planetPosition;
@@ -149,7 +150,7 @@ public class PlanetData : ScriptableObject
             
             planetShippableResourceAmounts[resourceName].RemoveCustomAmount(amount, true);    
         }
-        ResourceRemoved.Invoke();
+        ResourceRemoved?.Invoke();
     }
     
     public void RemoveNaturalResource(string resourceName, float amount)

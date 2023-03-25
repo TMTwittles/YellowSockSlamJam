@@ -20,7 +20,7 @@ public class StructureSpawnButtonController : MonoBehaviour
     {
         spawnButtonManager = _spawnButtonManager;
         structureData = _structureData;
-        button.interactable = GameManager.Instance.StructureManager.GetPlayerStructureCount(structureData.StructureName) > 0;
+        button.interactable = structureData.StartingAmount > 0;
         button.onClick.AddListener(OnClick);
         uiController.ConfigureStructureUIController(structureData);
     }
@@ -28,6 +28,8 @@ public class StructureSpawnButtonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        button.interactable = structureData.Amount > 0;
+        
         if (spawnStructure)
         {
             if (Input.GetButton("Fire2"))
@@ -42,19 +44,40 @@ public class StructureSpawnButtonController : MonoBehaviour
                 Ray screenRay = Camera.main.ScreenPointToRay(screenPosition);
                 RaycastHit hit;
                 bool hitPlanet = Physics.Raycast(screenRay, out hit);
-                if (hitPlanet && hit.collider.transform.parent.gameObject.CompareTag("Planet") && hit.collider.GetComponentInParent<PlanetController>().HasStructure() == false)                                   
+                if (hitPlanet && hit.collider.transform.parent.gameObject.CompareTag("Planet"))
                 {
-                    Vector3 newStructurePosition = hit.collider.gameObject.transform.position + 
-                                                   new Vector3(0.0f, 8 * 0.5f, 0.0f);
-                    spawnedStructureGameObject.transform.position = newStructurePosition;
-
-                    if (Input.GetButton("Fire1"))
+                    if (structureData.StructureName != StructureNames.Shuttle &&
+                        hit.collider.GetComponentInParent<PlanetController>().HasStructure() == false)
                     {
-                        hit.collider.GetComponentInParent<PlanetController>().AddStructure(structureData);
-                        Instantiate(structureData.StructureGameObject, newStructurePosition, Quaternion.identity, hit.collider.transform.parent);
-                        spawnStructure = false;
-                        Destroy(spawnedStructureGameObject);
-                        spawnButtonManager.SetSpawnButtonInteractivity(true);
+                        Vector3 newStructurePosition = hit.collider.gameObject.transform.position +
+                                                       new Vector3(0.0f, 8 * 0.5f, 0.0f);
+                        spawnedStructureGameObject.transform.position = newStructurePosition;
+                        
+                        if (Input.GetButton("Fire1"))
+                        {
+                            hit.collider.GetComponentInParent<PlanetController>().AddStructure(structureData);
+                            Instantiate(structureData.StructureGameObject, newStructurePosition, Quaternion.identity,
+                                hit.collider.transform.parent);
+                            spawnStructure = false;
+                            Destroy(spawnedStructureGameObject);
+                            structureData.DecreaseAmount();
+                            spawnButtonManager.SetSpawnButtonInteractivity(true);   
+                        }
+                    }
+                    else 
+                    {
+                        Vector3 newStructurePosition = hit.collider.gameObject.transform.position +
+                                                       new Vector3(0.0f, 8 * 0.5f, 0.0f);
+                        spawnedStructureGameObject.transform.position = newStructurePosition;
+                        
+                        if (Input.GetButton("Fire1"))
+                        {
+                            hit.collider.GetComponentInParent<ShuttleRouteCreator>().OnShuttleButtonPressed();
+                            spawnStructure = false;
+                            Destroy(spawnedStructureGameObject);
+                            structureData.DecreaseAmount();
+                            spawnButtonManager.SetSpawnButtonInteractivity(true);
+                        }
                     }
                 }
                 else
@@ -81,7 +104,7 @@ public class StructureSpawnButtonController : MonoBehaviour
 
     private void OnClick()
     {
-        if (spawnStructure == false)
+        if (spawnStructure == false && structureData.Amount > 0)
         {
             spawnButtonManager.SetSpawnButtonInteractivity(false);
             spawnedStructureGameObject = Instantiate(structureData.StructureGameObject, Input.mousePosition, Quaternion.identity);

@@ -284,7 +284,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ae6f6f5ede389c42ad5bfeca1547c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ratKingData: {fileID: 11400000, guid: cd6c6854ef326dd4a92e61d77fe5d196, type: 2}
   planetGameObject: {fileID: 2534470613368224042, guid: 78065da8eee6ccf44b87c0faccede4dd, type: 3}
+  ratKingGameObject: {fileID: 1973497017653247337, guid: 88d187847006d564ea1c59e39d5f85c0, type: 3}
+  cameraController: {fileID: 0}
 --- !u!1 &6839515447645598718
 GameObject:
   m_ObjectHideFlags: 0

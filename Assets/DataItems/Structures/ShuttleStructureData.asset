@@ -9,19 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1952908409366c42a9175b68b985a81, type: 3}
-  m_Name: MineStructureData
+  m_Script: {fileID: 11500000, guid: 3bb351cbe11e2ce4ba2616738971666b, type: 3}
+  m_Name: ShuttleStructureData
   m_EditorClassIdentifier: 
   structureIcon: {fileID: 21300000, guid: 3c6f689b1a19f844db5466514cd927b9, type: 3}
-  structureName: Mine
+  structureName: Shuttle
   requiredResources:
-  - {fileID: 11400000, guid: b0466f6332596f94da7813adf80414b7, type: 2}
+  - {fileID: 11400000, guid: 6fccff8330dd3114f9d25eb909f50f49, type: 2}
   outputResources: []
   requiredResourceAmount: 2
-  timeStructureGenerates: 10
-  resourceGain: 10
-  requiredHumans: 5
-  structureGameObject: {fileID: 1565506393610370497, guid: a94764404ca0b9a488f9a5eaaef6341c, type: 3}
-  structureDescription: Converts natural resources in shippable resources.
+  timeStructureGenerates: 0
+  resourceGain: 0
+  requiredHumans: 0
+  structureGameObject: {fileID: 5399137151291788076, guid: daed1d7ed4c5aba478a0016363d9a227, type: 3}
+  structureDescription: 'Ships planets resources to the rat king or other planets. '
   startingAmount: 1
   amount: 1

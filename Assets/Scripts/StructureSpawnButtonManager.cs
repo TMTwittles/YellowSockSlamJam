@@ -25,6 +25,7 @@ public class StructureSpawnButtonManager : MonoBehaviour
         {
             GameObject structureButtonSpawnerGameObject = Instantiate(structureSpawnButton, structureButtonListTransform);
             structureButtonSpawnerGameObject.GetComponent<StructureSpawnButtonController>().ConfigureStructureSpawnButton(structureData, this);
+            structureData.SetAmount();
             spawnButtons.Add(structureButtonSpawnerGameObject.GetComponent<StructureSpawnButtonController>());
         }
     }

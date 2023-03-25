@@ -13,6 +13,11 @@ public class StructureSpawnButtonUIController : MonoBehaviour
     {
         data = _data;
         structureNameTMP.text = data.StructureName;
-        structureAmountTMP.text = GameManager.Instance.StructureManager.GetPlayerStructureCount(data.StructureName).ToString();
+        structureAmountTMP.text = data.StartingAmount.ToString();
+    }
+
+    public void Update()
+    {
+        structureAmountTMP.text = data.Amount.ToString();
     }
 }
