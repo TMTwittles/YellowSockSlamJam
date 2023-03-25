@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,6 +28,15 @@ public class PlanetInfoUIController : MonoBehaviour
         planetNameTmp.text = $" = {data.GetShippablePlanetResourceAmount(ResourceNames.HUMAN)}";
         humanIconImage.gameObject.SetActive(true);
         ConfigureShit();
+    }
+
+    private void OnDestroy()
+    {
+        if (data != null)
+        {
+            data.NewResourceAdded -= OnResourceModified;
+            data.ResourceRemoved -= OnResourceModified;
+        }
     }
 
     private void ConfigureShit()

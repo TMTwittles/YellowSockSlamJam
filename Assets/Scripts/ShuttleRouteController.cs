@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ShuttleRouteController : MonoBehaviour
@@ -27,6 +28,12 @@ public class ShuttleRouteController : MonoBehaviour
         activeShuttleGameObject.GetComponent<ShuttleController>().ConfigureShuttle(data);
         lineRenderer.SetPosition(0, data.StartPlanetData.PlanetPosition);
         lineRenderer.SetPosition(1, data.EndPlanetData.PlanetPosition);
+    }
+
+    private void OnDestroy()
+    {
+        data.ShuttleRouteComplete -= OnShuttleRouteComplete;
+        data.ShuttleRouteCanceled -= OnShuttleRouteCanceled;
     }
 
     private void Update()

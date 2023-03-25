@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -26,6 +27,12 @@ public class StructureSpawnButtonController : MonoBehaviour
         uiController.ConfigureStructureUIController(structureData);
         GameManager.Instance.UserPlacingShuttle += OnUserPlacingShuttle;
         GameManager.Instance.UserPlacingStructure += OnUserPlacingStructure;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.UserPlacingShuttle -= OnUserPlacingShuttle;
+        GameManager.Instance.UserPlacingStructure -= OnUserPlacingStructure;
     }
 
     private void OnUserPlacingStructure(bool placingStructure)

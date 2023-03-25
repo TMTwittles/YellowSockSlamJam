@@ -48,6 +48,11 @@ public class GameManager : MonoBehaviour
         GameConfigured?.Invoke();
     }
 
+    private void OnDestroy()
+    {
+        
+    }
+
     public void InvokeUserPlacingStructure(bool placingStructure)
     {
         UserPlacingStructure?.Invoke(placingStructure);
