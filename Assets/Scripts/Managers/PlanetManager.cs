@@ -3,15 +3,44 @@ using UnityEngine;
 
 public class PlanetManager : MonoBehaviour
 {
+    [SerializeField] private RatKingData ratKingData;
+    public RatKingData RatKingData => ratKingData;
+    
     [SerializeField] private GameObject planetGameObject;
+    [SerializeField] private GameObject ratKingGameObject;
     [SerializeField] private LazyCameraController cameraController; //sorry, not ideal, but this is the easiest way to access the planet position index
     private int currentCycle;
     private int numPlanetsCreated = 0;
+    private int numRatKingsCreated = 0;
     private int currentPlanetPositionIndex = 0;
     private int currentPlanetCycleIndex = 0;
     private Dictionary<string, GameObject> planetGameObjectsDict;
 
     // This script needs to be cleaned, shits fucked. - Arvie
+
+    public void InstantiateStartingPlanets()
+    {
+        InstantiateRatKing();
+        InstantiatePlanets(GameManager.Instance.StateManager.GetGameStateData().NumStartingPlanets);
+    }
+
+    public void InstantiateRatKing()
+    {
+        if (planetGameObjectsDict == null)
+        {
+            planetGameObjectsDict = new Dictionary<string, GameObject>();
+        }
+        
+        Vector3 newPlanetPosition = Vector3.zero;
+        GameObject newPlanet = Instantiate(ratKingGameObject, newPlanetPosition, Quaternion.identity);
+        RatKingData newPlanetData = ScriptableObject.CreateInstance<RatKingData>();
+        string newPlanetName = $"RatKing {numPlanetsCreated + 1}";
+        planetGameObjectsDict.Add(newPlanetName, planetGameObject);
+        newPlanetData.SetRatKingStructureToBuy(ratKingData.StructuresToBuy);
+        // Really need to fix magic numbers on planet radius - Arvie
+        newPlanetData.PopulateRatKingData(newPlanetName, newPlanetPosition, 0.03f * 500, GameManager.Instance.ResourceManager.GetStartingPlanetPopulation(numPlanetsCreated), GameManager.Instance.ResourceManager.GetStartingPlanetResources(numPlanetsCreated));
+        newPlanet.GetComponentInChildren<RatKingController>().ConfigureRatKing(newPlanetData);
+    }
     
     public void InstantiatePlanets(int numPlanetsToInstantiate)
     {

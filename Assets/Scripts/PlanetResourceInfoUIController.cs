@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,7 +30,7 @@ public class PlanetResourceInfoUIController : MonoBehaviour
 
     void Update()
     {
-        if (data != null)
+        if (data != null && resourceName != String.Empty)
         {
             if (shippableResource)
             {

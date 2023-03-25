@@ -5,26 +5,27 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Create PlanetData", fileName = "PlanetData", order = 0)]
 public class PlanetData : ScriptableObject
 {
-    private string planetName;
+    protected string planetName;
     public string PlanetName => planetName;
     private List<StaticResourceData> planetShippableResources;
     public List<StaticResourceData> PlanetShippableResources => planetShippableResources;
     private List<StaticResourceData> planetNaturalResources;
     public List<StaticResourceData> PlanetNaturalResources => planetNaturalResources;
     
-    private Dictionary<string, DynamicResourceData> planetShippableResourceAmounts;
+    protected Dictionary<string, DynamicResourceData> planetShippableResourceAmounts;
+    public Dictionary<string, DynamicResourceData> PlanetShippableResourceAmount => planetShippableResourceAmounts;
     private Dictionary<string, DynamicResourceData> planetNaturalResourceAmounts;
 
-    private Vector3 planetPosition;
+    protected Vector3 planetPosition;
     public Vector3 PlanetPosition => planetPosition;
 
-    private bool planetSettled = false;
+    protected bool planetSettled = false;
     public bool PlanetSettled => planetSettled;
 
     private StructureData planetStructure;
     public StructureData PlanetStructure => planetStructure;
 
-    private float planetRadius;
+    protected float planetRadius;
     public float PlanetRadius => planetRadius;
     private float planetPopulation = 0.0f;
     public float PlanetPopulation => planetPopulation; 
@@ -106,7 +107,7 @@ public class PlanetData : ScriptableObject
         }
     }
 
-    public void AddShippableResource(string resourceName, float amount)
+    public void AddShippableResource(string resourceName, float amount, bool isRatking = false)
     {
         planetSettled = true;
         if (planetShippableResourceAmounts.ContainsKey(resourceName))
@@ -115,7 +116,7 @@ public class PlanetData : ScriptableObject
             {
                 planetPopulation = planetPopulation + amount;
             }
-            planetShippableResourceAmounts[resourceName].AddCustomAmount(amount);
+            planetShippableResourceAmounts[resourceName].AddCustomAmount(amount, isRatking);
         }
         else
         {
@@ -124,9 +125,9 @@ public class PlanetData : ScriptableObject
             DynamicResourceData newDynamicResourceData = ScriptableObject.CreateInstance<DynamicResourceData>();
             newDynamicResourceData.PopulateDynamicResourceData(newResourceData, amount);
             planetShippableResourceAmounts.Add(resourceName, newDynamicResourceData);
-            planetShippableResourceAmounts[resourceName].AddCustomAmount(amount);
+            planetShippableResourceAmounts[resourceName].AddCustomAmount(amount, isRatking);
         }
-        NewResourceAdded.Invoke();
+        NewResourceAdded?.Invoke();
     }
 
     public void RemoveShippableResource(string resourceName, float amount)
@@ -149,7 +150,7 @@ public class PlanetData : ScriptableObject
             
             planetShippableResourceAmounts[resourceName].RemoveCustomAmount(amount, true);    
         }
-        ResourceRemoved.Invoke();
+        ResourceRemoved?.Invoke();
     }
     
     public void RemoveNaturalResource(string resourceName, float amount)

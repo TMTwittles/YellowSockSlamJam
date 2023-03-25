@@ -15,3 +15,4 @@ MonoBehaviour:
   structuresInGame:
   - {fileID: 11400000, guid: a9edd454d7e5d5b42843a9c14b706660, type: 2}
   - {fileID: 11400000, guid: abd2bca33e360f94b886914ff546f883, type: 2}
+  - {fileID: 11400000, guid: 768ae9a9f9b7ef54fa5c8a0ade1d5676, type: 2}

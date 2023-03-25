@@ -51,7 +51,7 @@ public class ShuttleConfirmationPanel : MonoBehaviour
     {
         float shippingAmount = startPlanet.GetShippablePlanetResourceAmount(resourceDropDown.options[resourceDropDown.value].text);
         amountToShip = (int) (amountSlider.value * shippingAmount);
-        amountTMP.text = amountToShip.ToString();
+        amountTMP.text = $"x{amountToShip}";
     }
 
     private void OnLetsPlayButtonPressed()
@@ -63,6 +63,8 @@ public class ShuttleConfirmationPanel : MonoBehaviour
 
     private void OnCancelButtonPressed()
     {
+        GameManager.Instance.InvokeUserPlacingShuttle(false);
+        GameManager.Instance.StructureManager.GlobalStructureData.GetStructureData(StructureNames.Shuttle).AddToAmount();
         Cleanup();
         gameObject.SetActive(false);
     }

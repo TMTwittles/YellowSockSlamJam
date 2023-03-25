@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
 {
+
     [SerializeField] private ResourcesData resourceData;
+    public ResourcesData ResourcesData => resourceData;
 
     public void ConfigureResources()
     {
@@ -62,6 +64,11 @@ public class ResourceManager : MonoBehaviour
     public void AddToGlobalResourcesAmount(string resourceName, float amount)
     {
         resourceData.AddToGlobalShippableResourceAmount(resourceName, amount);
+    }
+
+    public void RemoveFromGlobalResourcesAmount(string resourceName, float amount)
+    {
+        resourceData.RemoveFromGlobalShippableResourceAmount(resourceName, amount);
     }
 
     public float GetGlobalResourceAmount(string resourceName)

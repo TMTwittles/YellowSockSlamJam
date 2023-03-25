@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public StructureManager StructureManager => structureManager;
 
     public Action GameConfigured;
+    public Action<bool> UserPlacingStructure;
+    public Action<bool> UserPlacingShuttle;
 
     public static GameManager Instance { get; private set; }
     private void Awake() 
@@ -41,9 +43,24 @@ public class GameManager : MonoBehaviour
         planetPositionManager.GeneratePlanetPositions();
         resourceManager.ConfigureResources();
         structureManager.ConfigureStructureManager();
-        planetManager.InstantiatePlanets(1);
+        planetManager.InstantiateStartingPlanets();
         stateManager.ConfigureGameState();
         GameConfigured?.Invoke();
+    }
+
+    private void OnDestroy()
+    {
+        
+    }
+
+    public void InvokeUserPlacingStructure(bool placingStructure)
+    {
+        UserPlacingStructure?.Invoke(placingStructure);
+    }
+
+    public void InvokeUserPlacingShuttle(bool placingShuttle)
+    {
+        UserPlacingShuttle?.Invoke(placingShuttle);
     }
 
     private void Start()

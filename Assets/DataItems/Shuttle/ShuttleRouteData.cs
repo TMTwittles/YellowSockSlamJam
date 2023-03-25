@@ -51,7 +51,7 @@ public class ShuttleRouteData : ScriptableObject
         shuttleTravelProgress += Time.deltaTime * GameManager.Instance.TimeManager.TimeModifier;
         if (shuttleTravelProgress >= shuttleTravelDuration)
         {
-            endPlanetData.AddShippableResource(resourceToShipName, amount);
+            endPlanetData.AddShippableResource(resourceToShipName, amount, EndPlanetData.PlanetName.Contains("RatKing"));
             ShuttleRouteComplete.Invoke();
         }
     }

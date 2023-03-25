@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49aa67b5be60d6f40848742e021ea355, type: 3}
-  m_Name: BagooieResource
+  m_Name: AResource
   m_EditorClassIdentifier: 
-  resourceName: Bagooie
-  resourceSprite: {fileID: 21300000, guid: 7ddb9e887ec35a74d96ddd05e5d91a24, type: 3}
+  resourceName: Googala
+  resourceSprite: {fileID: 21300000, guid: 9fbfd8f7fbd19c442934d20b2960c072, type: 3}
   timeSecondsGainResource: 1.25
   startingResourceAmount: 100
   standardResourceAmountDrain: 0.1
   resourceAmountGain: 1
+  timePreventDoomsday: 2

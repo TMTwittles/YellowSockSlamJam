@@ -6,6 +6,7 @@ using UnityEngine.Serialization;
 public class ResourcesData : ScriptableObject
 {
     [SerializeField] private List<StaticResourceData> globalResources;
+    public List<StaticResourceData> GlobalResources => globalResources;
     private Dictionary<string, StaticResourceData> globalResourcesDict;
     public Dictionary<string, StaticResourceData> GlobalResourcesDict => globalResourcesDict;
     private Dictionary<string, float> globalResourceAmountDict;
@@ -33,5 +34,10 @@ public class ResourcesData : ScriptableObject
     public void AddToGlobalShippableResourceAmount(string resourceName, float amount)
     {
         globalResourceAmountDict[resourceName] += amount;
+    }
+    
+    public void RemoveFromGlobalShippableResourceAmount(string resourceName, float amount)
+    {
+        globalResourceAmountDict[resourceName] -= amount;
     }
 }

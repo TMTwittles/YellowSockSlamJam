@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,6 +18,14 @@ public class StructureInfoUIController : MonoBehaviour
         data = _data;
         SetActiveMenu();
         data.StructureAdded += OnStructureAdded;
+    }
+
+    private void OnDestroy()
+    {
+        if (data != null)
+        {
+            data.StructureAdded -= OnStructureAdded;
+        }
     }
 
     private void SetActiveMenu()

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class LazyCameraController : MonoBehaviour
@@ -12,7 +13,17 @@ public class LazyCameraController : MonoBehaviour
     private Vector3 movementInputVector;
     private float cameraHeightInput;
     private float cameraRotationInput;
-    
+
+    private void Start()
+    {
+        // Lazily hard coding a position where you can see everything.
+        Vector2 positionXZ = new Vector3(0.0f, -50.0f);
+        if (positionXZ.magnitude > FurthestPlanetMagnitude) positionXZ = Vector3.Normalize(positionXZ) * FurthestPlanetMagnitude;
+        float positionY = Mathf.Clamp(transform.position.y + maxZoom, minZoom, maxZoom);
+        
+        transform.position = new Vector3(positionXZ.x, positionY, positionXZ.y);
+    }
+
     void Update()
     {
         UpdateInputVector();

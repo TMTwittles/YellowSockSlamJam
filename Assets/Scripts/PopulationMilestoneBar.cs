@@ -8,12 +8,15 @@ public class PopulationMilestoneBar : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI populationText;
     [SerializeField] private Image progressImage;
+    private GameStateData data;
 
+    void Start()
+    {
+        data = GameManager.Instance.StateManager.GetGameStateData();
+    }
+    
     void Update()
     {
-        float currentPopulation = GameManager.Instance.ResourceManager.GetGlobalResourceAmount(ResourceNames.HUMAN);
-        float requiredPopulation = GameManager.Instance.StateManager.GetNumRequiredForNextMilestone();
-        populationText.text = $"{currentPopulation} / {requiredPopulation}";
-        progressImage.fillAmount = currentPopulation / requiredPopulation;
+        progressImage.fillAmount = data.NormalizedTimeTillDoomsday();
     }
 }

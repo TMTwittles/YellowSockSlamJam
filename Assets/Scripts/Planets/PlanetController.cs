@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -6,12 +7,17 @@ public class PlanetController : MonoBehaviour
     [SerializeField] private PlanetInfoUIController planetUIController;
     [FormerlySerializedAs("shuttleController")] [SerializeField] private ShuttleRouteCreator shuttleRouteCreator;
     private PlanetData data;
-    
+
+    public void OnDestroy()
+    {
+        ScriptableObject.Destroy(data);
+        data = null;
+    }
+
     public void ConfigurePlanet(PlanetData _data)
     {
         data = _data;
         planetUIController.ConfigurePlanetInfoUIController(data);
-        shuttleRouteCreator.ConfigureShuttleController(data);
     }
 
     public void Update()

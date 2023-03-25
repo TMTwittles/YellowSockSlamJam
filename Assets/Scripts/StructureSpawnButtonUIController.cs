@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StructureSpawnButtonUIController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI structureNameTMP;
     [SerializeField] private TextMeshProUGUI structureAmountTMP;
+    [SerializeField] private Image structureImage;
     private StructureData data;
-    
+
     public void ConfigureStructureUIController(StructureData _data)
     {
         data = _data;
-        structureNameTMP.text = data.StructureName;
-        structureAmountTMP.text = GameManager.Instance.StructureManager.GetPlayerStructureCount(data.StructureName).ToString();
+        structureImage.sprite = data.StructureIcon;
+        structureAmountTMP.text = $"x{data.StartingAmount}";
+    }
+
+    public void Update()
+    {
+        structureAmountTMP.text = $"x{data.Amount}";
     }
 }

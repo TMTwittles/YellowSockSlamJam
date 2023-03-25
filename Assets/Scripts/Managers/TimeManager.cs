@@ -33,4 +33,9 @@ public class TimeManager : MonoBehaviour
                 break;
         }
     }
+
+    public void SetState(TimeModifierState _state)
+    {
+        currentTimeModifierState = _state;
+    }
 }
