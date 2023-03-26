@@ -5,7 +5,46 @@ public class InfoCanvasController : MonoBehaviour, IPointerEnterHandler, IPointe
 {
     [SerializeField] private Animator animator;
     private bool inDetailView = false;
+    private bool userIsPlacingSomething = false;
 
+    void Start()
+    {
+        GameManager.Instance.UserPlacingShuttle += OnUserPlacingShuttle;
+        GameManager.Instance.UserPlacingStructure += OnUserPlacingStructure;
+    }
+    
+    private void OnUserPlacingStructure(bool placingStructure)
+    {
+        if (placingStructure)
+        {
+            if (inDetailView)
+            {
+                ToggleInfoCanvasView();
+            }
+            userIsPlacingSomething = true;
+        }
+        else
+        {
+            userIsPlacingSomething = false;
+        }
+    }
+
+    private void OnUserPlacingShuttle(bool placingShuttle)
+    {
+        if (placingShuttle)
+        {
+            if (inDetailView)
+            {
+                ToggleInfoCanvasView();
+            }
+            userIsPlacingSomething = true;
+        }
+        else
+        {
+            userIsPlacingSomething = false;
+        }
+    }
+    
     public void ToggleInfoCanvasView()
     {
         if (inDetailView && animator.GetCurrentAnimatorStateInfo(0).IsName(AnimationKeys.InfoCanvasDetailViewState))
@@ -22,11 +61,17 @@ public class InfoCanvasController : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        ToggleInfoCanvasView();
+        if (userIsPlacingSomething == false)
+        {
+            ToggleInfoCanvasView();
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        ToggleInfoCanvasView();
+        if (userIsPlacingSomething == false)
+        {
+            ToggleInfoCanvasView();   
+        }
     }
 }
