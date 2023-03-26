@@ -15,8 +15,8 @@ public class ResourceManager : MonoBehaviour
     
     public List<StaticResourceData> GetRandomResourcesForPlanet()
     {
-        int numResources = UnityEngine.Random.Range(2, 2);
-        List<StaticResourceData> listShuffled = resourceData.StartingPlanetNaturalResources;
+        int numResources = UnityEngine.Random.Range(1, 2);
+        List<StaticResourceData> listShuffled = resourceData.NonStartingPlanetResources;
         List<StaticResourceData> planetStartingResources = new List<StaticResourceData>();
         // This could be made generic.
         for (int i = listShuffled.Count - 1; i > 0; i--)
@@ -48,12 +48,11 @@ public class ResourceManager : MonoBehaviour
 
     public List<StaticResourceData> GetStartingPlanetResources(int planetIndex)
     {
-        return GetRandomResourcesForPlanet();
-        /*if (planetIndex == 0)
+        if (planetIndex == 0)
         {
-            return resourceData.StartingPlanetResources;            
+            return resourceData.StartingPlanetNaturalResources;            
         }
-        return new List<StaticResourceData>();*/
+        return GetRandomResourcesForPlanet();
     }
 
     public StaticResourceData GetResourceData(string resourceName)

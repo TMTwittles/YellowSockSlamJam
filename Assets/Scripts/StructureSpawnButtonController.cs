@@ -90,9 +90,12 @@ public class StructureSpawnButtonController : MonoBehaviour
                         
                         if (Input.GetButton("Fire1"))
                         {
-                            hit.collider.GetComponentInParent<PlanetController>().AddStructure(structureData);
+                            hit.collider.transform.GetComponentInParent<PlanetController>().AddStructure(structureData);
                             GameObject spawnedStructure = Instantiate(structureData.StructureGameObject, newStructurePosition, Quaternion.identity,
-                                hit.collider.transform.parent);
+                                hit.collider.transform.parent.GetChild(1));
+                            spawnedStructure.transform.localPosition = new Vector3(0.0f, 0.02f, 0.0f);
+                            spawnedStructure.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+                            spawnedStructure.GetComponent<PlanetRotator>().enabled = false;
                             spawnStructure = false;
                             Destroy(spawnedStructureGameObject);
                             structureData.DecreaseAmount();

@@ -34,7 +34,7 @@ public class PlanetResourceInfoUIController : MonoBehaviour
         {
             if (shippableResource)
             {
-                resourceAmountTmp.text = data.GetShippablePlanetResourceAmount(resourceName).ToString();
+                resourceAmountTmp.text = $"x{data.GetShippablePlanetResourceAmount(resourceName)}";
                 //resourceTickerImage.fillAmount = data.GetNormalizedTimeTillNextResourceGain(resourceName);
             }
             else

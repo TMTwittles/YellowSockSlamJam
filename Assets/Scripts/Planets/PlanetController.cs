@@ -12,6 +12,13 @@ public class PlanetController : MonoBehaviour
     {
         ScriptableObject.Destroy(data);
         data = null;
+        Destroy(gameObject);
+    }
+
+    public void Kill()
+    {
+        data.Kill();
+        OnDestroy();
     }
 
     public void ConfigurePlanet(PlanetData _data)
@@ -26,6 +33,11 @@ public class PlanetController : MonoBehaviour
         {
             data.TickNaturalPlanetResources();   
             data.TickPlanetStructure();
+            
+            if (data.GetNormalizedTimeTillAnyResourceDepleted() <= 0.0f)
+            {
+                Kill();
+            }
         }
     }
 

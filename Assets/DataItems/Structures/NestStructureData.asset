@@ -14,15 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   structureIcon: {fileID: 21300000, guid: 74af6a70a8eb1204d8c1235c7be09519, type: 3}
   structureName: Nest
+  resourceRequiredToPurchaseStructure: {fileID: 11400000, guid: b0466f6332596f94da7813adf80414b7, type: 2}
   requiredResources:
+  - {fileID: 11400000, guid: 3841c0a14124c0a4e95f101a6ed1b2a6, type: 2}
   - {fileID: 11400000, guid: b0466f6332596f94da7813adf80414b7, type: 2}
   outputResources:
-  - {fileID: 11400000, guid: 3841c0a14124c0a4e95f101a6ed1b2a6, type: 2}
+  - {fileID: 11400000, guid: caa7957b13434c04fbab6b2e187623cb, type: 2}
   requiredResourceAmount: 5
-  timeStructureGenerates: 1
-  resourceGain: 20
+  timeStructureGenerates: 10
+  resourceGain: 3
   requiredHumans: 5
   structureGameObject: {fileID: 1565506393610370497, guid: 24744f1d4c4261b4ea132f6e9e0a8599, type: 3}
   structureDescription: Breeds more rats by consuming natural resources
   startingAmount: 0
-  amount: 0
+  amount: 1

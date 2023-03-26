@@ -34,6 +34,14 @@ public class PlanetData : ScriptableObject
     public Action ResourceRemoved;
     public Action StructureAdded;
 
+    public void Kill()
+    {
+        foreach (DynamicResourceData planetShippableResource in planetShippableResourceAmounts.Values)
+        {
+            GameManager.Instance.ResourceManager.RemoveFromGlobalResourcesAmount(planetShippableResource.Data.ResourceName, planetShippableResource.Amount);
+        }
+    }
+
     public void PopulatePlanetData(string _planetName, Vector3 _planetPosition, float _planetRadius, StaticResourceData _planetPopulation, List<StaticResourceData> _planetNaturalResources)
     {
         planetRadius = _planetRadius;
@@ -75,6 +83,11 @@ public class PlanetData : ScriptableObject
     {
         return planetNaturalResourceAmounts[resourceName].NormalizedAmountResourceHasDepleted();
     }
+    
+    public float GetNormalizedTimeTillAnyResourceDepleted()
+    {
+        return planetNaturalResourceAmounts[planetNaturalResources[0].ResourceName].NormalizedAmountResourceHasDepleted();
+    }
 
     /*public float GetNormalizedTimeTillNextResourceGain(string resourceName)
     {
@@ -107,7 +120,7 @@ public class PlanetData : ScriptableObject
         }
     }
 
-    public void AddShippableResource(string resourceName, float amount, bool isRatking = false)
+    public void AddShippableResource(string resourceName, float amount, bool isRatking = false, bool notifyGlobalResource = true)
     {
         planetSettled = true;
         if (planetShippableResourceAmounts.ContainsKey(resourceName))
@@ -116,7 +129,7 @@ public class PlanetData : ScriptableObject
             {
                 planetPopulation = planetPopulation + amount;
             }
-            planetShippableResourceAmounts[resourceName].AddCustomAmount(amount, isRatking);
+            planetShippableResourceAmounts[resourceName].AddCustomAmount(amount, isRatking, notifyGlobalResource);
         }
         else
         {
@@ -125,7 +138,7 @@ public class PlanetData : ScriptableObject
             DynamicResourceData newDynamicResourceData = ScriptableObject.CreateInstance<DynamicResourceData>();
             newDynamicResourceData.PopulateDynamicResourceData(newResourceData, amount);
             planetShippableResourceAmounts.Add(resourceName, newDynamicResourceData);
-            planetShippableResourceAmounts[resourceName].AddCustomAmount(amount, isRatking);
+            planetShippableResourceAmounts[resourceName].AddCustomAmount(amount, isRatking, notifyGlobalResource);
         }
         NewResourceAdded?.Invoke();
     }

@@ -10,6 +10,7 @@ public class GameOverPanel : MonoBehaviour
     
     public void ShowGameOverPanel(string gameOverReason)
     {
+        GameManager.Instance.UIManager.TurnOffEverythingExceptGameOverPanel();
         gameOverReasonTMP.text = gameOverReason;
         button.onClick.AddListener(GameManager.Instance.UIManager.StartGame);
     }

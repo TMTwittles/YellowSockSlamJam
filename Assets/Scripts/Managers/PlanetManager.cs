@@ -15,26 +15,29 @@ public class PlanetManager : MonoBehaviour
     private int currentPlanetPositionIndex = 0;
     private int currentPlanetCycleIndex = 0;
     private Dictionary<string, GameObject> planetGameObjectsDict;
+    // Every 5 planets create new rat king.
+    private int numPlanetsCreateRatKing = 5;
 
     // This script needs to be cleaned, shits fucked. - Arvie
 
     public void InstantiateStartingPlanets()
     {
-        InstantiateRatKing();
+        InstantiateRatKing(Vector3.zero);
         InstantiatePlanets(GameManager.Instance.StateManager.GetGameStateData().NumStartingPlanets);
     }
 
-    public void InstantiateRatKing()
+    public void InstantiateRatKing(Vector3 position)
     {
         if (planetGameObjectsDict == null)
         {
             planetGameObjectsDict = new Dictionary<string, GameObject>();
         }
-        
-        Vector3 newPlanetPosition = Vector3.zero;
+
+        numRatKingsCreated += 1;
+        Vector3 newPlanetPosition = position;
         GameObject newPlanet = Instantiate(ratKingGameObject, newPlanetPosition, Quaternion.identity);
         RatKingData newPlanetData = ScriptableObject.CreateInstance<RatKingData>();
-        string newPlanetName = $"RatKing {numPlanetsCreated + 1}";
+        string newPlanetName = $"RatKing {numRatKingsCreated + 1}";
         planetGameObjectsDict.Add(newPlanetName, planetGameObject);
         newPlanetData.SetRatKingStructureToBuy(ratKingData.StructuresToBuy);
         // Really need to fix magic numbers on planet radius - Arvie
@@ -58,17 +61,24 @@ public class PlanetManager : MonoBehaviour
             {
                 Vector3 newPlanetPosition =
                     GameManager.Instance.PositionManager.PlanetPositions[planetCycle][planetPosition];
-                GameObject newPlanet = Instantiate(planetGameObject, newPlanetPosition, Quaternion.identity);
-                PlanetData newPlanetData = ScriptableObject.CreateInstance<PlanetData>();
-                string newPlanetName = $"planet {numPlanetsCreated + 1}";
-                planetGameObjectsDict.Add(newPlanetName, planetGameObject);
-                // Really need to fix magic numbers on planet radius - Arvie
-                newPlanetData.PopulatePlanetData(newPlanetName, newPlanetPosition, 0.5f * 8, GameManager.Instance.ResourceManager.GetStartingPlanetPopulation(numPlanetsCreated), GameManager.Instance.ResourceManager.GetStartingPlanetResources(numPlanetsCreated));
-                newPlanet.GetComponentInChildren<PlanetController>().ConfigurePlanet(newPlanetData);
-                newPlanetsCreated += 1;
+                if (numPlanetsCreated != 0 && numPlanetsCreated % numPlanetsCreateRatKing == 0)
+                {
+                    InstantiateRatKing(newPlanetPosition);
+                }
+                else
+                {
+                    GameObject newPlanet = Instantiate(planetGameObject, newPlanetPosition, Quaternion.identity);
+                    PlanetData newPlanetData = ScriptableObject.CreateInstance<PlanetData>();
+                    string newPlanetName = $"planet {numPlanetsCreated + 1}";
+                    planetGameObjectsDict.Add(newPlanetName, planetGameObject);
+                    // Really need to fix magic numbers on planet radius - Arvie
+                    newPlanetData.PopulatePlanetData(newPlanetName, newPlanetPosition, 0.5f * 8, GameManager.Instance.ResourceManager.GetStartingPlanetPopulation(numPlanetsCreated), GameManager.Instance.ResourceManager.GetStartingPlanetResources(numPlanetsCreated));
+                    newPlanet.GetComponentInChildren<PlanetController>().ConfigurePlanet(newPlanetData);
+                    newPlanetsCreated += 1;
+                }
                 numPlanetsCreated += 1;
                 currentPlanetPositionIndex += 1;
-
+                
                 if (newPlanetsCreated >= numPlanetsToInstantiate)
                 {
                     if (newPlanetPosition.magnitude > cameraController.FurthestPlanetMagnitude)

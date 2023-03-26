@@ -54,12 +54,15 @@ public class DynamicResourceData : ScriptableObject
         }
     }
 
-    public void AddCustomAmount(float customAmount, bool isRatking = false)
+    public void AddCustomAmount(float customAmount, bool isRatking = false, bool notifyGlobalResources = true)
     {
         amount += customAmount;
         if (isRatking == false)
         {
-            GameManager.Instance.ResourceManager.AddToGlobalResourcesAmount(data.ResourceName, customAmount);   
+            if (notifyGlobalResources)
+            {
+                GameManager.Instance.ResourceManager.AddToGlobalResourcesAmount(data.ResourceName, customAmount);      
+            }
         }
         else
         {
