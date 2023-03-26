@@ -45,20 +45,44 @@ public class ShuttleRouteData : ScriptableObject
     {
         if (shuttleTravelProgress <= 0.0f)
         {
-            startPlanetData.RemoveShippableResource(resourceToShipName, amount);
+            if (startPlanetData != null)
+            {
+                startPlanetData.RemoveShippableResource(resourceToShipName, amount);   
+            }
         }
         
         shuttleTravelProgress += Time.deltaTime * GameManager.Instance.TimeManager.TimeModifier;
         if (shuttleTravelProgress >= shuttleTravelDuration)
         {
-            endPlanetData.AddShippableResource(resourceToShipName, amount, EndPlanetData.PlanetName.Contains("RatKing"));
+            if (EndPlanetData.PlanetName.Contains("RatKing"))
+            {
+                GameManager.Instance.StateManager.AddTime(GameManager.Instance.ResourceManager.GetResourceData(resourceToShipName).TimePreventDoomsday * amount);
+            }
+            
+            if (endPlanetData != null)
+            {
+                endPlanetData.AddShippableResource(resourceToShipName, amount, EndPlanetData.PlanetName.Contains("RatKing"));    
+            }
+            else
+            {
+                GameManager.Instance.ResourceManager.RemoveFromGlobalResourcesAmount(resourceToShipName, amount);
+            }
+            
             ShuttleRouteComplete.Invoke();
         }
     }
 
     public void CancelShuttleRoute()
     {
-        startPlanetData.AddShippableResource(resourceToShipName, amount);
+        if (startPlanetData != null)
+        {
+            startPlanetData.AddShippableResource(resourceToShipName, amount, false, false);    
+        }
+        else
+        {
+            GameManager.Instance.ResourceManager.RemoveFromGlobalResourcesAmount(resourceToShipName, amount);
+        }
+        
         ShuttleRouteCanceled.Invoke();
     }
     

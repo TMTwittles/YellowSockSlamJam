@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   structureIcon: {fileID: 21300000, guid: fb494d15e0047874f8ae27b9461038ef, type: 3}
   structureName: Shuttle
+  resourceRequiredToPurchaseStructure: {fileID: 11400000, guid: 6fccff8330dd3114f9d25eb909f50f49, type: 2}
   requiredResources:
   - {fileID: 11400000, guid: 6fccff8330dd3114f9d25eb909f50f49, type: 2}
   outputResources: []

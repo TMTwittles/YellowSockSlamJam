@@ -11,9 +11,11 @@ public abstract class StructureData : ScriptableObject
     
     [SerializeField] private string structureName;
     public string StructureName => structureName;
+    [SerializeField] private StaticResourceData resourceRequiredToPurchaseStructure;
+    public StaticResourceData ResourceRequiredToPurchaseStructure => resourceRequiredToPurchaseStructure;
     [SerializeField] protected List<StaticResourceData> requiredResources;
     [SerializeField] protected List<StaticResourceData> outputResources;
-
+    
     [SerializeField] private float requiredResourceAmount;
     public float RequiredResourceAmount => requiredResourceAmount;
     

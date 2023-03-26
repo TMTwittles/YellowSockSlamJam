@@ -18,8 +18,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b0466f6332596f94da7813adf80414b7, type: 2}
   - {fileID: 11400000, guid: 6fccff8330dd3114f9d25eb909f50f49, type: 2}
   startingPlanetPopulationResource: {fileID: 11400000, guid: 802bc7213845261448d7e92ca3063e2f, type: 2}
+  nonStartingPlantResources:
+  - {fileID: 11400000, guid: 3841c0a14124c0a4e95f101a6ed1b2a6, type: 2}
+  - {fileID: 11400000, guid: b0466f6332596f94da7813adf80414b7, type: 2}
+  - {fileID: 11400000, guid: 6fccff8330dd3114f9d25eb909f50f49, type: 2}
   planetPopulationResource: {fileID: 11400000, guid: caa7957b13434c04fbab6b2e187623cb, type: 2}
   startingPlanetNaturalResources:
-  - {fileID: 11400000, guid: 6fccff8330dd3114f9d25eb909f50f49, type: 2}
   - {fileID: 11400000, guid: 3841c0a14124c0a4e95f101a6ed1b2a6, type: 2}
   - {fileID: 11400000, guid: b0466f6332596f94da7813adf80414b7, type: 2}

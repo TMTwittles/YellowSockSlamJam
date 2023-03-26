@@ -31,6 +31,7 @@ Transform:
   m_Children:
   - {fileID: 8589545153974540142}
   - {fileID: 8313429349144405532}
+  - {fileID: 8341187475941918431}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48,6 +49,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetUIController: {fileID: 5426739990849858298}
   shuttleRouteCreator: {fileID: 0}
+--- !u!1 &9179859320887655090
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8341187475941918431}
+  - component: {fileID: 367555120248809843}
+  m_Layer: 0
+  m_Name: PlanetCollider
+  m_TagString: Planet
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8341187475941918431
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9179859320887655090}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 445, y: 445, z: 445}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 479266606201653499}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &367555120248809843
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9179859320887655090}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.027977014
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &8265132497574026430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -311,7 +357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a9625206b87dc84459b147016ae21d80, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a9625206b87dc84459b147016ae21d80, type: 3}
       propertyPath: m_LocalRotation.y
@@ -349,19 +395,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a9625206b87dc84459b147016ae21d80, type: 3}
   m_PrefabInstance: {fileID: 8418778629864047095}
   m_PrefabAsset: {fileID: 0}
---- !u!135 &4214448863923620984
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8652799576530451622}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.027977014
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8752972604530785348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,3 +408,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 1.25
+--- !u!114 &5483913937372994669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8652799576530451622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 779564a9ee75ea04d91208824700d10d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planetController: {fileID: 6568702633149132014}

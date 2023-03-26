@@ -8,6 +8,12 @@ public class BrothelStructureData : StructureData
     
     public override void ConfigureStructureData(PlanetData planetData)
     {
+        requiredResources = new List<StaticResourceData>();
+        foreach (StaticResourceData staticResourceData in planetData.PlanetNaturalResources)
+        {
+            requiredResources.Add(staticResourceData);
+        }
+        
         outputResourcesDict = new Dictionary<string, StaticResourceData>();
         foreach (StaticResourceData outputResource in outputResources)
         {
@@ -22,14 +28,9 @@ public class BrothelStructureData : StructureData
             return;
         }
 
-        consumeShippableResource = false;
-        foreach (StaticResourceData staticResourceData in requiredResources)
+        foreach (StaticResourceData resourceData in planetData.PlanetNaturalResources)
         {
-            if (planetData.HasShippableResource(staticResourceData.ResourceName) && planetData.GetShippablePlanetResourceAmount(staticResourceData.ResourceName) > 0)
-            {
-                consumeShippableResource = true;
-            }
-            else if (planetData.HasNaturalResource(staticResourceData.ResourceName) == false || planetData.GetNaturalPlanetResourceAmount(staticResourceData.ResourceName) <= 0)
+            if (planetData.GetNaturalPlanetResourceAmount(resourceData.ResourceName) <= 0.0f)
             {
                 return;
             }
@@ -41,16 +42,9 @@ public class BrothelStructureData : StructureData
         {
             elapsedTime = 0.0f;
             planetData.AddShippableResource(outputResources[0].ResourceName, resourceGain);
-            foreach (StaticResourceData staticResourceData in requiredResources)
+            foreach (StaticResourceData staticResourceData in planetData.PlanetNaturalResources)
             {
-                if (consumeShippableResource)
-                {
-                    planetData.RemoveShippableResource(staticResourceData.ResourceName, resourceGain);
-                }
-                else
-                {
-                    planetData.RemoveNaturalResource(staticResourceData.ResourceName, resourceGain);
-                }
+                planetData.RemoveNaturalResource(staticResourceData.ResourceName, resourceGain);
             }
         }
     }

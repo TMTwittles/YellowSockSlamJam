@@ -55,10 +55,6 @@ public class ShuttleRouteController : MonoBehaviour
     private void OnShuttleRouteComplete()
     {
         // This is bad code btw. 
-        if (data.EndPlanetData.PlanetName.Contains("RatKing"))
-        {
-            GameManager.Instance.StateManager.AddTime(GameManager.Instance.ResourceManager.GetResourceData(data.ResourceToShipName).TimePreventDoomsday * data.Amount);
-        }
         GameManager.Instance.StructureManager.GlobalStructureData.GetStructureData(StructureNames.Shuttle).AddToAmount();
         Destroy(activeShuttleGameObject);
         Destroy(data);

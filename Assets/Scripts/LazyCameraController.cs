@@ -19,7 +19,7 @@ public class LazyCameraController : MonoBehaviour
         // Lazily hard coding a position where you can see everything.
         Vector2 positionXZ = new Vector3(0.0f, -50.0f);
         if (positionXZ.magnitude > FurthestPlanetMagnitude) positionXZ = Vector3.Normalize(positionXZ) * FurthestPlanetMagnitude;
-        float positionY = Mathf.Clamp(transform.position.y + maxZoom, minZoom, maxZoom);
+        float positionY = Mathf.Clamp(transform.position.y + maxZoom / 2, minZoom, maxZoom);
         
         transform.position = new Vector3(positionXZ.x, positionY, positionXZ.y);
     }

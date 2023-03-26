@@ -7,8 +7,6 @@ public class StructureInfoUIController : MonoBehaviour
     [SerializeField] private GameObject structureActiveGameObject;
     [SerializeField] private GameObject structureNotActiveGameObject;
     [SerializeField] private TextMeshProUGUI structureRequirementsText;
-    [SerializeField] private Transform consumptionResourceListTransform;
-    [SerializeField] private GameObject resourceConsumptionGameObject;
     [SerializeField] private Transform outputResourceListTransform;
     [SerializeField] private GameObject outputResourceDisplayGameObject;
     private PlanetData data;
@@ -38,13 +36,7 @@ public class StructureInfoUIController : MonoBehaviour
     {
         SetActiveMenu();
 
-        structureRequirementsText.text = $"> {data.PlanetStructure.RequiredHumans}";
-
-        foreach (StaticResourceData consumptionResource in data.PlanetStructure.RequiredResources)
-        {
-            GameObject instantiatedConsumptionResource = Instantiate(resourceConsumptionGameObject, consumptionResourceListTransform);
-            instantiatedConsumptionResource.GetComponent<Image>().sprite = consumptionResource.ResourceSprite;
-        }
+        structureRequirementsText.text = $" >{data.PlanetStructure.RequiredHumans}";
         
         foreach (StaticResourceData outputResource in data.PlanetStructure.OutputResourceDict.Values)
         {

@@ -18,22 +18,22 @@ public class RatKingBoonUIDisplayController : MonoBehaviour
         data = _data;
         ratKingData = _ratKingData;
         boonImage.sprite = data.StructureIcon;
-        spendButtonPlanetImage.sprite = data.RequiredResources[0].ResourceSprite;
+        spendButtonPlanetImage.sprite = data.ResourceRequiredToPurchaseStructure.ResourceSprite;
         //boonName.text = data.StructureName;
         boonDescription.text = data.StructureDescription;
-        spendText.text = $"Spend {data.RequiredResourceAmount}";
-        buyBoonButton.interactable = ratKingData.GetShippablePlanetResourceAmount(data.RequiredResources[0].ResourceName) > 0;
+        spendText.text = $"x{data.RequiredResourceAmount}";
+        buyBoonButton.interactable = ratKingData.GetShippablePlanetResourceAmount(data.ResourceRequiredToPurchaseStructure.ResourceName) > 0;
         buyBoonButton.onClick.AddListener(OnBuyBoon);
     }
 
     void Update()
     {
-        buyBoonButton.interactable = ratKingData.GetShippablePlanetResourceAmount(data.RequiredResources[0].ResourceName) > 0;
+        buyBoonButton.interactable = ratKingData.GetShippablePlanetResourceAmount(data.ResourceRequiredToPurchaseStructure.ResourceName) > 0;
     }
 
     void OnBuyBoon()
     {
-        ratKingData.RemoveShippableResource(data.RequiredResources[0].ResourceName, data.RequiredResourceAmount);
+        ratKingData.RemoveShippableResource(data.ResourceRequiredToPurchaseStructure.ResourceName, data.RequiredResourceAmount);
         if (data.StructureName == StructureNames.Planet)
         {
             GameManager.Instance.PlanetManager.InstantiatePlanets(1);

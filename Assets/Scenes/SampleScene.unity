@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &136211134 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1098933888672960676, guid: ca677effb8610724581f4e8872695392, type: 3}
+  m_PrefabInstance: {fileID: 844635834508532596}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &185486013
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,9 +424,19 @@ Transform:
   m_Father: {fileID: 296927323}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
+--- !u!1 &1137395425 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4429878368603077711, guid: ca677effb8610724581f4e8872695392, type: 3}
+  m_PrefabInstance: {fileID: 844635834508532596}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1400148319 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2397005879724324074, guid: ca677effb8610724581f4e8872695392, type: 3}
+  m_PrefabInstance: {fileID: 844635834508532596}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1668883268 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8172199996557274365, guid: ca677effb8610724581f4e8872695392, type: 3}
   m_PrefabInstance: {fileID: 844635834508532596}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &844635834508532596
@@ -786,9 +801,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 296927322}
     - target: {fileID: 7933805750691426197, guid: fe614b2ff2be0d744ae9129e78ea25dc, type: 3}
+      propertyPath: pauseButton
+      value: 
+      objectReference: {fileID: 1137395425}
+    - target: {fileID: 7933805750691426197, guid: fe614b2ff2be0d744ae9129e78ea25dc, type: 3}
       propertyPath: gameOverPanel
       value: 
       objectReference: {fileID: 844635834508532597}
+    - target: {fileID: 7933805750691426197, guid: fe614b2ff2be0d744ae9129e78ea25dc, type: 3}
+      propertyPath: structureButtons
+      value: 
+      objectReference: {fileID: 1668883268}
+    - target: {fileID: 7933805750691426197, guid: fe614b2ff2be0d744ae9129e78ea25dc, type: 3}
+      propertyPath: timeTillEndOfTheWorld
+      value: 
+      objectReference: {fileID: 136211134}
     - target: {fileID: 7933805750691426197, guid: fe614b2ff2be0d744ae9129e78ea25dc, type: 3}
       propertyPath: shuttleConfirmationPanelGameObject
       value: 

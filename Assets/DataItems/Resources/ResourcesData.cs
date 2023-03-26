@@ -13,6 +13,8 @@ public class ResourcesData : ScriptableObject
     public Dictionary<string, float> GlobalResourceAmountDict => globalResourceAmountDict;
 
     [SerializeField] private StaticResourceData startingPlanetPopulationResource;
+    [SerializeField] private List<StaticResourceData> nonStartingPlantResources;
+    public List<StaticResourceData> NonStartingPlanetResources => nonStartingPlantResources;
     public StaticResourceData StartingPlanetPopulationResource => startingPlanetPopulationResource;
     
     [SerializeField] private StaticResourceData planetPopulationResource;
